@@ -18,6 +18,10 @@
     "passport": "*",
     "passport-jwt": "*"
   },
+"repository": {
+    "type": "git",
+    "url": "git://github.com/andersfrid/exjobb.git"
+},
   "author": "David, Anders",
   "license": "ISC"
 }
