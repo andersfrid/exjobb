@@ -11,11 +11,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ArenaComponent } from './components/arena/arena.component';
+import { StudyhallComponent } from './components/studyhall/studyhall.component';
 
 import { ValidateService} from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService} from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+
 
 
 const appRoutes: Routes = [
@@ -34,7 +37,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ArenaComponent,
+    StudyhallComponent
   ],
   imports: [
     BrowserModule,
