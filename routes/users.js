@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config/database');
+const Character = require('../models/character');
 
 //Register
 router.post('/register', (req, res, next) => {
@@ -61,5 +62,36 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
   res.json({user: req.user});
 });
 
+//Creates a character
+/*
+  Todo:
+    Make it so that is saves its ID to the user.
+    So that the user is linked to its character.
+*/
+router.post('/create-char', (req, res, next) => {
+  let newChar = new Character({
+    charName: req.body.charName,
+    playerLvl: 0,
+    xp: 0,
+    playerTitle: 'newbie',
+    combat:[{
+      health: 0,
+      damage: 0
+    }],
+    combatRecord:[{
+      wins: 0,
+      losses: 0
+    }]
+  });
+
+  Character.createCharacter(newChar, (err, character) => {
+    if(err){
+      res.json({success: false, msg:'Failed to create character', err:err});
+    }else{
+      res.json({success: true, msg:'Character created'});
+    }
+  });
+
+});
 
 module.exports = router;

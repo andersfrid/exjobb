@@ -17,7 +17,7 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  }//Need to add the character to the user to
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
