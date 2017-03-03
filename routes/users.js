@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config/database');
 const Character = require('../models/character');
+const Achievment = require('../models/Achievments');
 
 //Register
 router.post('/register', (req, res, next) => {
@@ -89,6 +90,17 @@ router.post('/create-char', (req, res, next) => {
       res.json({success: false, msg:'Failed to create character', err:err});
     }else{
       res.json({success: true, msg:'Character created'});
+    }
+  });
+
+});
+
+router.get('/studyhall', (req, res, next) => {
+  Achievment.showAchievments({}, (err, achievment) =>{
+    if(err){
+      res.json({success:false, msg:'Failed to load achievments', err:err});
+    }else{
+      res.json({achievment:achievment});
     }
   });
 
