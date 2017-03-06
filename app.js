@@ -24,7 +24,6 @@ const port = 3000;
 //Cors middlewear
 app.use(cors());
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 

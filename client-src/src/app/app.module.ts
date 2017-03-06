@@ -13,13 +13,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ArenaComponent } from './components/arena/arena.component';
 import { StudyhallComponent } from './components/studyhall/studyhall.component';
+import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
 
 import { ValidateService} from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService} from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-
-
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -28,7 +27,8 @@ const appRoutes: Routes = [
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'studyhall', component: StudyhallComponent},
-  {path:'arena', component: ArenaComponent}
+  {path:'arena', component: ArenaComponent},
+  {path:'create-char', component: CharacterCreationComponent}
 ]
 
 @NgModule({
@@ -41,7 +41,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     ArenaComponent,
-    StudyhallComponent
+    StudyhallComponent,
+    CharacterCreationComponent
   ],
   imports: [
     BrowserModule,

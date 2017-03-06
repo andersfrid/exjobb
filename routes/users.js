@@ -71,7 +71,8 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
 */
 router.post('/create-char', (req, res, next) => {
   let newChar = new Character({
-    charName: req.body.charName,
+    charName: req.body.name,
+    charImage: req.body.image,
     playerLvl: 0,
     xp: 0,
     playerTitle: 'newbie',
@@ -92,7 +93,6 @@ router.post('/create-char', (req, res, next) => {
       res.json({success: true, msg:'Character created'});
     }
   });
-
 });
 
 router.get('/studyhall', (req, res, next) => {
@@ -103,7 +103,6 @@ router.get('/studyhall', (req, res, next) => {
       res.json({achievment:achievment});
     }
   });
-
 });
 
 module.exports = router;

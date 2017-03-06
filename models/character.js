@@ -6,6 +6,10 @@ const CharacterSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  charImage:{
+    type:Number,
+    required:true
+  },
   playerLvl:{
     type: Number,
     required: true
