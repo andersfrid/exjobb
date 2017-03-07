@@ -13,6 +13,15 @@ export class CharacterCreationComponent implements OnInit {
   name:String;
   image:Number;
 
+  private imgPaths = [
+    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img1'},
+    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img2'},
+    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img3'},
+    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img4'}
+  ];
+
+  private img:Object;
+
   constructor(
     private validateService: ValidateService,
     private flashMessage: FlashMessagesService,
@@ -21,6 +30,19 @@ export class CharacterCreationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.img = this.imgPaths[0];
+  }
+
+  private moveLeft(){
+
+  }
+
+  private moveRight(){
+
+  }
+
+  onCharacter(){
+    console.log(this.img);
   }
 
   onCharacterSubmit(){

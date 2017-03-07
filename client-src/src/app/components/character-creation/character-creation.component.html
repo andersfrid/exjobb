@@ -1,6 +1,6 @@
 <h2 class="page-header">Register your character</h2>
 <p>This is where you create your character! GLHF</p>
-<form (submit)="onCharacterSubmit()">
+<form (submit)="onCharacter()">
   <div class="form-group">
     <label>Character Name</label>
     <input type="text" [(ngModel)]="name" name="name" class="form-control">
@@ -8,9 +8,8 @@
   <div class="form-group">
     <label>IMAGE</label>
     <div class="char-image">
-      <img src="../../../../images/img1.png" alt="char 1">
+      <img id="image" src={{img.src}} alt={{img.alt}}>
     </div>
-    <!--<input type="text" [(ngModel)]="image" name="image" class="form-control">!-->
   </div>
   <input type="submit" class="btn btn-primary" value="Confirm">
 </form>
