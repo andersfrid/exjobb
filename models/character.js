@@ -7,7 +7,7 @@ const CharacterSchema = mongoose.Schema({
     required: true
   },
   charImage:{
-    type:Number,
+    type:String,
     required:true
   },
   playerLvl:{

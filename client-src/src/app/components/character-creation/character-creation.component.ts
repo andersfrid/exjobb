@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 })
 export class CharacterCreationComponent implements OnInit {
   name:String;
-  image:Number;
+  imageIndex:number;
 
   private imgPaths = [
     {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img1'},
-    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img2'},
-    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img3'},
-    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img4'}
+    {src:'http://webshare.mah.se/ae3529/img2.png', alt:'img2'},
+    {src:'http://webshare.mah.se/ae3529/img3.png', alt:'img3'},
+    {src:'http://webshare.mah.se/ae3529/img4.png', alt:'img4'}
   ];
 
   private img:Object;
@@ -30,25 +30,34 @@ export class CharacterCreationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.img = this.imgPaths[0];
+    this.imageIndex = 0;
+    this.img = this.imgPaths[this.imageIndex];
   }
 
   private moveLeft(){
-
+    if(this.imageIndex <= 0){
+      this.imageIndex = 3;
+      this.img = this.imgPaths[this.imageIndex];
+    }else{
+      this.imageIndex--;
+      this.img = this.imgPaths[this.imageIndex];
+    }
   }
 
   private moveRight(){
-
-  }
-
-  onCharacter(){
-    console.log(this.img);
+    if(this.imageIndex >= 3){
+      this.imageIndex = 0;
+      this.img = this.imgPaths[this.imageIndex];
+    }else{
+      this.imageIndex++;
+      this.img = this.imgPaths[this.imageIndex];
+    }
   }
 
   onCharacterSubmit(){
     const char = {
       name:this.name,
-      image:this.image
+      image:this.imgPaths[this.imageIndex].src
     }
 
   if(!this.validateService.validateCharName(char)){
