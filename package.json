@@ -16,7 +16,8 @@
     "jsonwebtoken": "*",
     "body-parser": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "mysql": "*"
   },
 "repository": {
     "type": "git",

@@ -6,6 +6,7 @@ const User = require('../models/user');
 const config = require('../config/database');
 const Character = require('../models/character');
 const Achievment = require('../models/Achievments');
+const App = require('../app');
 
 //Register
 router.post('/register', (req, res, next) => {
@@ -96,6 +97,11 @@ router.post('/create-char', (req, res, next) => {
 });
 
 router.get('/studyhall', (req, res, next) => {
+  App.name();
+  App.handleMySql(res,(err, mySql)=>{
+    console.log('whaat');
+  });
+
   Achievment.showAchievments({}, (err, achievment) =>{
     if(err){
       res.json({success:false, msg:'Failed to load achievments', err:err});

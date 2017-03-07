@@ -6,6 +6,51 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
+const app = express();
+const users = require('./routes/users');
+
+const port = 3000;
+
+const mysql = require('mysql');
+var pool = mysql.createPool({
+    connectionLimit : 100,
+    host: 'dvwebb.mah.se',
+    user: 'ae2332',
+    password: 'GuldFisk1337',
+    database: 'ae2332'
+});
+
+module.exports.handleMySql = function(res, callback){
+  console.log('hej');
+
+  pool.getConnection(function(err,connection){
+    if (err) {
+      res.json({success:false, msg:"Get Connection Error", err:err});
+        return;
+    }
+    console.log('connected as id ' + connection.threadId);
+
+    connection.query('SELECT * FROM `mah` WHERE `Username` = "ae2332"', function(err, results, fields){
+      console.log(results);
+      connection.release();
+        if(err) {
+          res.json({success:false, msg:"Fail to get info", err:err});
+        }else{
+          res.json({results});
+        }
+      });
+
+    connection.on('error', function(err) {
+      res.json({success:false, msg: "Error in connection database", err:err});
+        return;
+    });
+  });
+}
+
+module.exports.name = function(){
+  console.log('why');
+}
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
@@ -15,11 +60,6 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
   console.log('Error: Database ' +err);
 });
-
-const app = express();
-const users = require('./routes/users');
-
-const port = 3000;
 
 //Cors middlewear
 app.use(cors());
