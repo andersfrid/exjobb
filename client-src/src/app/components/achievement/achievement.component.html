@@ -1,0 +1,13 @@
+<div *ngIf="achievements" class="col-md-12">
+  <h2 class="page-header">Achievements</h2>
+<div *ngIf="test">
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-success">hej</li>
+  </ul>
+</div>
+  <ul *ngFor="let achievement of achievements" class="list-group" >
+    <li class="list-group-item disabled"><strong>{{achievement.name}}</strong>
+      <br> {{achievement.description}}
+      <br> {{achievement.reward}} XP</li>
+  </ul>
+</div>

@@ -14,6 +14,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ArenaComponent } from './components/arena/arena.component';
 import { StudyhallComponent } from './components/studyhall/studyhall.component';
 import { CharacterCreationComponent } from './components/character-creation/character-creation.component';
+import { AchievementComponent } from './components/achievement/achievement.component';
 
 import { ValidateService} from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'studyhall', component: StudyhallComponent},
   {path:'arena', component: ArenaComponent},
-  {path:'create-char', component: CharacterCreationComponent}
+  {path:'create-char', component: CharacterCreationComponent},
+  {path: 'achievement', component: AchievementComponent}
 ]
 
 @NgModule({
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     ArenaComponent,
     StudyhallComponent,
-    CharacterCreationComponent
+    CharacterCreationComponent,
+    AchievementComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { tokenNotExpired} from 'angular2-jwt';
 export class AuthService {
   authToken: any;
   user: any;
+  char:any;
   constructor(private http: Http) { }
 
   registerUser(user){
@@ -39,6 +40,20 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  getStudyHallInfo(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/studyhall', {headers: headers})
+    .map(res => res.json());
+  }
+
+  getAchievements(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/achievement', {headers: headers})
+    .map(res => res.json());
+  }
+
   loggedIn(){
     return tokenNotExpired();
   }
@@ -46,6 +61,15 @@ export class AuthService {
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  setCharLocalStorage(data){
+    localStorage.setItem('character', JSON.stringify(data.newChar));
+  }
+
+  getCharacterLocalStorage(){
+    const charact = localStorage.getItem('character');
+    return this.char = charact;
   }
 
   storeUserData(token, user){

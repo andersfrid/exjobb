@@ -20,37 +20,6 @@ var pool = mysql.createPool({
     database: 'ae2332'
 });
 
-module.exports.handleMySql = function(res, callback){
-  console.log('hej');
-
-  pool.getConnection(function(err,connection){
-    if (err) {
-      res.json({success:false, msg:"Get Connection Error", err:err});
-        return;
-    }
-    console.log('connected as id ' + connection.threadId);
-
-    connection.query('SELECT * FROM `mah` WHERE `Username` = "ae2332"', function(err, results, fields){
-      console.log(results);
-      connection.release();
-        if(err) {
-          res.json({success:false, msg:"Fail to get info", err:err});
-        }else{
-          res.json({results});
-        }
-      });
-
-    connection.on('error', function(err) {
-      res.json({success:false, msg: "Error in connection database", err:err});
-        return;
-    });
-  });
-}
-
-module.exports.name = function(){
-  console.log('why');
-}
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
@@ -84,6 +53,30 @@ app.get('/', (req, res) =>{
 app.get('*', (req, res) =>{
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
+
+exports.handleMySql = function({}, callback){
+  pool.getConnection(function(err,connection){
+    if (err) {
+      console.log(err);
+        return;
+    }
+    console.log('connected as id ' + connection.threadId);
+
+    connection.query('SELECT * FROM `mah` WHERE `Username` = "ae2332"', function(err, results, fields){
+
+      connection.release();
+      if(err) {
+        console.log(err);
+      }else{
+        callback(null, results);
+      }
+    });
+    connection.on('error', function(err) {
+      console.log(err);
+        return;
+    });
+  });
+}
 
 //start server
 app.listen(port, () => {

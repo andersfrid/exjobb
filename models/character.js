@@ -41,6 +41,11 @@ const CharacterSchema = mongoose.Schema({
       type: Number,
       required: true
     }
+  }],
+  achievements:[{
+    name:{
+      type:String
+    }
   }]
 });
 

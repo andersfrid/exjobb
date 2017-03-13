@@ -69,6 +69,7 @@ export class CharacterCreationComponent implements OnInit {
     if(data.success){
       this.flashMessage.show('You have registered a character', {cssClass: 'alert-success', timeout: 3000});
       this.router.navigate(['/profile']);
+      this.authService.setCharLocalStorage(data);
     }else{
       this.flashMessage.show('REGISTER FAILED', {cssClass: 'alert-danger', timeout: 3000});
       this.router.navigate(['/create-char']);

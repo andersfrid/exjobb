@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const config = require('../config/database');
 const Character = require('../models/character');
-const Achievment = require('../models/Achievments');
+const Achievment = require('../models/achievments');
 const App = require('../app');
 
 //Register
@@ -84,6 +84,9 @@ router.post('/create-char', (req, res, next) => {
     combatRecord:[{
       wins: 0,
       losses: 0
+    }],
+    achievements:[{
+      name: "Baby steps"
     }]
   });
 
@@ -91,17 +94,22 @@ router.post('/create-char', (req, res, next) => {
     if(err){
       res.json({success: false, msg:'Failed to create character', err:err});
     }else{
-      res.json({success: true, msg:'Character created'});
+      res.json({success: true, msg:'Character created', newChar:newChar});
     }
   });
 });
 
 router.get('/studyhall', (req, res, next) => {
-  App.name();
-  App.handleMySql(res,(err, mySql)=>{
-    console.log('whaat');
+  App.handleMySql({}, (err, mySql)=>{//
+    if(err){
+      res.json({success:false, msg:'Faild to load mySql information', err:err});
+    }else{
+      res.json({mySql:mySql});
+    }
   });
+});
 
+router.get('/achievement', (req, res, next) =>{
   Achievment.showAchievments({}, (err, achievment) =>{
     if(err){
       res.json({success:false, msg:'Failed to load achievments', err:err});
