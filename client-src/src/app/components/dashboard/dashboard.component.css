@@ -1,3 +1,39 @@
 .top-buffer {
   margin-top:20px;
 }
+
+#arena{
+  display: block;
+  width: 40%;
+}
+
+#studyhall{
+  width: 30%;
+  display: block;
+  float: right;
+}
+#study{
+  float: right;
+  padding-right: 5%;
+}
+
+
+#profile{
+  display: block;
+  margin: auto;
+  width: 15%;
+}
+
+#char{
+  text-align: center;
+}
+
+#lvl{
+  text-align: center;
+}
+
+.hpbar{
+  width: 25%;
+  margin: auto;
+  padding-bottom: 5%;
+}
