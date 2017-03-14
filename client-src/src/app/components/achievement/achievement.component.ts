@@ -8,8 +8,10 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class AchievementComponent implements OnInit {
+  notDoneAchievements = [];
+  doneAchievements = [];
   achievements:any;
-  test = true;
+  character:any;
   constructor(private authService:AuthService) { }
 
 /*
@@ -20,10 +22,18 @@ export class AchievementComponent implements OnInit {
   ngOnInit() {
     this.authService.getAchievements().subscribe(data => {
       this.achievements = data.achievment;
-      console.log(this.achievements);
-      console.log(this.authService.getCharacterLocalStorage());
-      for(var i =0; i<this.achievements.length; i++){
-        console.log(this.achievements[i]);
+      this.character = this.authService.getCharacterLocalStorage();
+      var obj = JSON.parse(this.character);
+      var temp:any;
+      for(var j = 0; j<obj.achievements.length; j++){
+        temp = obj.achievements[j].name;
+        for(var i = 0; i<this.achievements.length; i++){
+          if(this.achievements[i].name == temp){
+            this.doneAchievements.push(this.achievements[i]);
+          }else{
+            this.notDoneAchievements.push(this.achievements[i]);
+          }
+      }
       }
     },
   err => {
