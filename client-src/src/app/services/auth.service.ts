@@ -60,6 +60,12 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/setchar', user ,{headers: headers})
       .map(res => res.json());
   }
+  getCharacter(user){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/getchar' , user, {headers: headers})
+    .map(res => res.json());
+  }
 
   loggedIn(){
     return tokenNotExpired();

@@ -52,7 +52,7 @@ const CharacterSchema = mongoose.Schema({
 const Character = module.exports = mongoose.model('Character', CharacterSchema);
 
 module.exports.getCharacterById = function(id, callback){
-  Character.findById(id, callback);
+  Character.findById({_id:id}, callback);
 }
 
 module.exports.createCharacter = function(newChar, callback){

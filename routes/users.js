@@ -136,4 +136,14 @@ router.post('/setchar', (req, res, next) =>{
 
 });
 
+router.post('/getchar', (req, res, next) =>{
+      Character.getCharacterById(req.body.character, (err,char)=>{
+        if(err){
+          res.json({success:false, msg: 'Failed to find char', err:err});
+        }else{
+          res.json({char:char});
+        }
+      });
+});
+
 module.exports = router;
