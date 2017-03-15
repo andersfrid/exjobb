@@ -1,16 +1,16 @@
 
-<h2 class="page-header">Achievements</h2>
-<div *ngIf="doneAchievements" class="col-md-12">
-  <ul *ngFor="let doneAchievement of doneAchievements" class="list-group">
-    <li class="list-group-item list-group-item-success"><strong>{{doneAchievement.name}}</strong>
-      <br> {{doneAchievement.description}}
-      <br> {{doneAchievement.reward}} XP</li>
-  </ul>
-</div>
-<div *ngIf="notDoneAchievements" class="col-md-12">
-  <ul *ngFor="let achievement of notDoneAchievements" class="list-group" >
-    <li class="list-group-item disabled"><strong>{{achievement.name}}</strong>
-      <br> {{achievement.description}}
-      <br> {{achievement.reward}} XP</li>
-  </ul>
-</div>
+  <h2 class="page-header">Achievements</h2>
+  <div *ngIf="doneAchievements" class="col-md-12">
+    <ul *ngFor="let doneAchievement of doneAchievements" class="list-group">
+      <li class="list-group-item list-group-item-success"><strong>{{doneAchievement.name}}</strong>
+        <br> {{doneAchievement.description}}
+        <br> {{doneAchievement.reward}} XP</li>
+    </ul>
+  </div>
+  <div *ngIf="notDoneAchievements" class="col-md-12">
+    <ul *ngFor="let achievement of notDoneAchievements" class="list-group" >
+      <li class="list-group-item disabled"><strong>{{achievement.name}}</strong>
+        <br> {{achievement.description}}
+        <br> {{achievement.reward}} XP</li>
+    </ul>
+  </div>
