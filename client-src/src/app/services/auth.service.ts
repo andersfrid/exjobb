@@ -54,6 +54,13 @@ export class AuthService {
     .map(res => res.json());
   }
 
+  setUserChar(user){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:3000/users/setchar', user ,{headers: headers})
+      .map(res => res.json());
+  }
+
   loggedIn(){
     return tokenNotExpired();
   }
@@ -77,6 +84,11 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
+  }
+
+  getUserLocaldata(){
+    const user = localStorage.getItem('user');
+    return user;
   }
 
   logout(){

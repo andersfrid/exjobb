@@ -50,7 +50,8 @@ router.post('/authenticate', (req, res, next) => {
             id: user._id,
             name: user.name,
             username: user.username,
-            emal: user.email
+            emal: user.email,
+            character: user.character
           }
         });
       }else{
@@ -117,6 +118,22 @@ router.get('/achievement', (req, res, next) =>{
       res.json({achievment:achievment});
     }
   });
+});
+
+router.post('/setchar', (req, res, next) =>{
+  var yass = {
+    username: req.body.username,
+    id: req.body.character
+  }
+
+  User.updateUser(yass,(err, updatedUser) =>{
+    if(err){
+      res.json({success:false, msg:'Failed to update user with char', err:err});
+    }else{
+      res.json({updatedUser:updatedUser});
+    }
+  });
+
 });
 
 module.exports = router;

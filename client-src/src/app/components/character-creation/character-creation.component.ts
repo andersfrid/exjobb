@@ -21,6 +21,7 @@ export class CharacterCreationComponent implements OnInit {
   ];
 
   private img:Object;
+  private user:any;
 
   constructor(
     private validateService: ValidateService,
@@ -70,6 +71,17 @@ export class CharacterCreationComponent implements OnInit {
       this.flashMessage.show('You have registered a character', {cssClass: 'alert-success', timeout: 3000});
       this.router.navigate(['/profile']);
       this.authService.setCharLocalStorage(data);
+      this.user = JSON.parse(this.authService.getUserLocaldata());
+      var updateUser = {
+        username:this.user.username,
+        character:data.newChar._id
+      }
+      this.authService.setUserChar(updateUser).subscribe(data => {
+        if(data.success){
+          console.log(data);
+          //UPDATERA USER I localStorage
+        }
+      });
     }else{
       this.flashMessage.show('REGISTER FAILED', {cssClass: 'alert-danger', timeout: 3000});
       this.router.navigate(['/create-char']);

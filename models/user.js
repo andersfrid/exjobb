@@ -17,7 +17,10 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }//Need to add the character to the user to
+  },
+  character: {
+    type: String
+  }
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
@@ -29,6 +32,10 @@ module.exports.getUsersById = function(id, callback){
 module.exports.getUsersByUsername = function(username, callback){
   const query = {username: username}
   User.findOne(query, callback);
+}
+
+module.exports.updateUser = function(yass, callback){
+  User.update({username: yass.username},{$set:{character: yass.id}}, callback)
 }
 
 module.exports.addUser = function(newUser, callback){
