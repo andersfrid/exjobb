@@ -14,8 +14,10 @@
           1400/2000 XP
         </div>
       </div>
-      <button type="button" class="btn btn-info btn-block">Achievements</button>
-      <button type="button" class="btn btn-info btn-block">FAQ</button>
+      <h4>Achievements</h4>
+      <p>Check your achievements</p>
+      <button [routerLink]="['/achievement']" type="button" class="btn btn-info btn-block">Achievements</button>
+      <button [routerLink]="['/dashboard']" type="button" class="btn btn-info btn-block">Back</button>
     </div>
 
     <div *ngIf="users" class="col-md-6">
