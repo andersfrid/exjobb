@@ -33,6 +33,14 @@ export class CharacterCreationComponent implements OnInit {
   ngOnInit() {
     this.imageIndex = 0;
     this.img = this.imgPaths[this.imageIndex];
+    if(!this.authService.loggedIn()){
+      this.router.navigate(['/']);
+    }else{
+      this.user = JSON.parse(this.authService.getUserLocaldata());
+      if(this.user.character != undefined){
+        this.router.navigate(['/dashboard']);
+      }
+    }
   }
 
   private moveLeft(){

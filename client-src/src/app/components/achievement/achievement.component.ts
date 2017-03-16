@@ -45,7 +45,7 @@ export class AchievementComponent implements OnInit {
       return false;
     });
   }else{
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
   }
 }
