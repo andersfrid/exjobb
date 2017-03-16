@@ -1,0 +1,15 @@
+#char{
+  width: 40%;
+  padding: 5%;
+}
+#charComp{
+  width: 40%;
+  padding: 5%;
+  float: right;
+}
+.buttons{
+  padding: 2%;
+}
+.row{
+  background-color: green;
+}

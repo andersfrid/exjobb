@@ -5,7 +5,8 @@
     <p>Write something usefull over here</p>
     <button (click)="doStartGame('playerOne', 'computer')">Start Round</button>
 </div>
-<div class="col-md-6">
+<div class="col-md-4">
+  <p>Character name</p>
   <div class="progressPlayer">
     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
       aria-valuemin="0" aria-valuemax="100" style="width:100%">
@@ -13,7 +14,11 @@
     </div>
   </div>
 </div>
-<div class="col-md-6">
+<div class="col-md-4 text-center">
+  <h3>VS</h3>
+</div>
+<div class="col-md-4">
+  <p>Computer</p>
   <div class="progressComputer">
     <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40"
     aria-valuemin="0" aria-valuemax="100" style="width:100%">
@@ -21,9 +26,15 @@
     </div>
   </div>
 </div>
-
-
-    <button (click)="setMove('rock')">Rock</button>
-    <button (click)="setMove('paper')">Paper</button>
-    <button (click)="setMove('scissors')">Scissors</button>
+<div class="col-md-6">
+    <a><img id="char" src="http://webshare.mah.se/ae3529/img1.png" alt="img1"></a>
+    <div class="buttons">
+    <button (click)="setMove('strike')">Strike</button>
+    <button (click)="setMove('protect')">Protect</button>
+    <button (click)="setMove('haymaker')">Haymaker</button>
   </div>
+  </div>
+  <div class="col-md-6">
+      <a><img id="charComp" src="http://webshare.mah.se/ae3529/boss.png" alt="boss"></a>
+  </div>
+</div>

@@ -25,7 +25,7 @@ export class FightComponent implements OnInit {
 
 	}
   setMove(val){
-    console.log(val);
+    //console.log(val);
     this.onElementSelected(val);
   }
   onElementSelected(playerResult) {
@@ -33,19 +33,29 @@ export class FightComponent implements OnInit {
     this.establishTheWinner();
 	}
   establishTheWinner() {
-    if (this.shufflingResults[0] == this.computerResult[0]) {
-      console.log("it's a draw !");
-    }else if(((this.shufflingResults[0] == "rock") && (this.computerResult[0] == "scissors"))
-      || ((this.shufflingResults[0] == "scissors") && (this.computerResult[0] == "paper"))
-      || ((this.shufflingResults[0] == "paper") && (this.computerResult[0] == "rock"))) {
-      console.log(this.shufflingResults[0] + " Player wins !!!");
-    }else{
-      console.log(this.computerResult[0] + " Computer wins !!!");
+    if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "strike")){
+      console.log("Both do 95% damage");
+    }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "protect")){
+      console.log("Miss");
+    }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "strike")){
+      console.log("Comp does 20% damage");
+    }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "protect")){
+      console.log("Player does 20% damage");
+    }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "strike")){
+      console.log("Player does 150% damage and comp does 95% damage");
+    }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "haymaker")){
+      console.log("Player evades");
+    }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "haymaker")){
+      console.log("Player does 95% damage and computer does 150%");
+    }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "haymaker")){
+      console.log("Both does 150% damage");
+    }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "protect")){
+      console.log("Nothing happens");
     }
       this.computerResult = new Array();
   }
   startShuffling() {
-		var elements = ["rock", "paper", "scissors"];
+		var elements = ["strike", "protect", "haymaker"];
 		var shufflingCounter = 0;
 		var SHUFFLING_MAX = 30;
 		var interval = setInterval(
