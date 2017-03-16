@@ -20,17 +20,18 @@ import { ValidateService} from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService} from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { FightComponent } from './components/fight/fight.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'register', component: RegisterComponent},
-  {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'studyhall', component: StudyhallComponent},
   {path:'arena', component: ArenaComponent},
   {path:'create-char', component: CharacterCreationComponent},
-  {path: 'achievement', component: AchievementComponent}
+  {path: 'achievement', component: AchievementComponent},
+  {path: 'fight', component: FightComponent}
 ]
 
 @NgModule({
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     ArenaComponent,
     StudyhallComponent,
     CharacterCreationComponent,
-    AchievementComponent
+    AchievementComponent,
+    FightComponent
   ],
   imports: [
     BrowserModule,
