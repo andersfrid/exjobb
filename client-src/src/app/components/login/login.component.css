@@ -1,0 +1,9 @@
+label{
+  float: left;
+}
+
+form{
+  width: 60%;
+  display: block;
+  margin: auto;
+}
