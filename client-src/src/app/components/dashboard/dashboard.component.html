@@ -14,9 +14,9 @@
 </div>
 <div class="row top-buffer">
   <div class="col-md-12" >
-    <h3 id="char">Charactar name</h3>
-      <p id="lvl">Lvl 10</p>
-    <a [routerLink]="['/profile']"><img id="profile" src="http://webshare.mah.se/ae3529/img1.png" alt="img1"></a>
+    <h3 id="char">{{name}}</h3>
+      <p id="lvl">Lvl: {{level}}</p>
+    <a [routerLink]="['/profile']"><img id="profile" src="{{image}}" alt="img1"></a>
 
     <div class="hpbar">
       <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"

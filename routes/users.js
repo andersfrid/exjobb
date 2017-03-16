@@ -141,7 +141,7 @@ router.post('/getchar', (req, res, next) =>{
         if(err){
           res.json({success:false, msg: 'Failed to find char', err:err});
         }else{
-          res.json({char:char});
+          res.json({success:true, char:char});
         }
       });
 });
