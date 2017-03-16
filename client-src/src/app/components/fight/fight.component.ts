@@ -36,7 +36,7 @@ export class FightComponent implements OnInit {
     if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "strike")){
       console.log("Both do 95% damage");
     }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "protect")){
-      console.log("Miss");
+      console.log("Miss and comp does 35% damage");
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "strike")){
       console.log("Comp does 20% damage");
     }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "protect")){
@@ -44,7 +44,7 @@ export class FightComponent implements OnInit {
     }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "strike")){
       console.log("Player does 150% damage and comp does 95% damage");
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "haymaker")){
-      console.log("Player evades");
+      console.log("Player evades and retaliates for 35% damage");
     }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "haymaker")){
       console.log("Player does 95% damage and computer does 150%");
     }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "haymaker")){
