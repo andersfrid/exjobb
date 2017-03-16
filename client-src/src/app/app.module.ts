@@ -27,11 +27,11 @@ const appRoutes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path:'studyhall', component: StudyhallComponent},
-  {path:'arena', component: ArenaComponent},
-  {path:'create-char', component: CharacterCreationComponent},
-  {path: 'achievement', component: AchievementComponent},
-  {path: 'fight', component: FightComponent}
+  {path:'studyhall', component: StudyhallComponent, canActivate:[AuthGuard]},
+  {path:'arena', component: ArenaComponent, canActivate:[AuthGuard]},
+  {path:'create-char', component: CharacterCreationComponent, canActivate:[AuthGuard]},
+  {path: 'achievement', component: AchievementComponent, canActivate:[AuthGuard]},
+  {path: 'fight', component: FightComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({

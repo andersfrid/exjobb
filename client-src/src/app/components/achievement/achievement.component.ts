@@ -21,31 +21,27 @@ export class AchievementComponent implements OnInit {
   Save not done achivements in array
 */
   ngOnInit() {
-    if(this.authService.loggedIn()){
-      this.authService.getAchievements().subscribe(data => {
-        this.achievements = data.achievment;
-        var user = this.authService.getUserLocaldata();
-        var obj = JSON.parse(user);
-        this.authService.getCharacter(obj).subscribe(char =>{
-          var temp:any;
-          for(var i = 0; i<char.char.achievements.length; i++){
-            temp = char.char.achievements[i].name;
-            for(var j = 0; j<this.achievements.length; j++){
-              if(this.achievements[j].name == temp){
-                this.doneAchievements.push(this.achievements[j]);
-              }else{
-                this.notDoneAchievements.push(this.achievements[j]);
-              }
+    this.authService.getAchievements().subscribe(data => {
+      this.achievements = data.achievment;
+      var user = this.authService.getUserLocaldata();
+      var obj = JSON.parse(user);
+      this.authService.getCharacter(obj).subscribe(char =>{
+        var temp:any;
+        for(var i = 0; i<char.char.achievements.length; i++){
+          temp = char.char.achievements[i].name;
+          for(var j = 0; j<this.achievements.length; j++){
+            if(this.achievements[j].name == temp){
+              this.doneAchievements.push(this.achievements[j]);
+            }else{
+              this.notDoneAchievements.push(this.achievements[j]);
             }
           }
-        });
-      },
-    err => {
-      console.log(err);
-      return false;
-    });
-  }else{
-    this.router.navigate(['/']);
-  }
+        }
+      });
+    },
+  err => {
+    console.log(err);
+    return false;
+  });
   }
 }
