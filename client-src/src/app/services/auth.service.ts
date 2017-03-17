@@ -60,6 +60,7 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/setchar', user ,{headers: headers})
       .map(res => res.json());
   }
+
   getCharacter(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -83,6 +84,11 @@ export class AuthService {
   getCharacterLocalStorage(){
     const charact = localStorage.getItem('character');
     return this.char = charact;
+  }
+
+  updateUserLocal(user){
+    localStorage.setItem('user', JSON.stringify(user));
+    this.user = user;
   }
 
   storeUserData(token, user){

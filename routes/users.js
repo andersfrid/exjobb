@@ -125,7 +125,7 @@ router.post('/setchar', (req, res, next) =>{
     if(err){
       res.json({success:false, msg:'Failed to update user with char', err:err});
     }else{
-      res.json({updatedUser:updatedUser});
+      res.json({success:true, updatedUser:updatedUser});
     }
   });
 });

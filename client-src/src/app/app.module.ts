@@ -21,6 +21,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService} from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { FightComponent } from './components/fight/fight.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -30,8 +31,9 @@ const appRoutes: Routes = [
   {path:'studyhall', component: StudyhallComponent, canActivate:[AuthGuard]},
   {path:'arena', component: ArenaComponent, canActivate:[AuthGuard]},
   {path:'create-char', component: CharacterCreationComponent, canActivate:[AuthGuard]},
-  {path: 'achievement', component: AchievementComponent, canActivate:[AuthGuard]},
-  {path: 'fight', component: FightComponent, canActivate:[AuthGuard]}
+  {path:'achievement', component: AchievementComponent, canActivate:[AuthGuard]},
+  {path:'fight', component: FightComponent, canActivate:[AuthGuard]},
+  {path:'faq', component: FaqComponent}
 ]
 
 @NgModule({
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
     StudyhallComponent,
     CharacterCreationComponent,
     AchievementComponent,
-    FightComponent
+    FightComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
