@@ -3,6 +3,7 @@
   <div class="col-md-12 text-center">
     <h1>Fight Mode</h1>
     <p>Write something usefull over here</p>
+    <h3>{{winner}}</h3>
     <button (click)="doStartGame('playerOne', 'computer')">Start Round</button>
 </div>
 <div class="col-md-4">
@@ -10,7 +11,7 @@
   <div class="progressPlayer">
     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
       aria-valuemin="0" aria-valuemax="100" style="width:100%">
-      {{hp}} HP
+      {{hp}}/200 HP
     </div>
   </div>
 </div>
@@ -22,7 +23,7 @@
   <div class="progressComputer">
     <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40"
     aria-valuemin="0" aria-valuemax="100" style="width:100%">
-    200/200 HP
+    {{compHp}}/200 HP
     </div>
   </div>
 </div>
