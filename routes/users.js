@@ -70,12 +70,12 @@ router.post('/create-char', (req, res, next) => {
   let newChar = new Character({
     charName: req.body.name,
     charImage: req.body.image,
-    playerLvl: 0,
+    playerLvl: 1,
     xp: 0,
     playerTitle: 'newbie',
     combat:[{
-      health: 0,
-      damage: 0
+      health: 140,
+      damage: 20
     }],
     combatRecord:[{
       wins: 0,
@@ -128,7 +128,6 @@ router.post('/setchar', (req, res, next) =>{
       res.json({updatedUser:updatedUser});
     }
   });
-
 });
 
 router.post('/getchar', (req, res, next) =>{
@@ -149,7 +148,6 @@ router.post('/level', (req, res, next) =>{
       res.json({success:true, level:level});
     }
   });
-
 });
 
 module.exports = router;
