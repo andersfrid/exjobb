@@ -63,6 +63,7 @@ export class FightComponent implements OnInit {
       console.log(this.hp = (this.hp - 0.35*this.damage));
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "strike")){
       console.log("Comp does 20% damage");
+      console.log(this.hp = (this.hp - 0.20*this.computerDmg));
     }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "protect")){
       console.log("Player does 20% damage");
       console.log(this.compHp = (this.compHp - 0.20*this.damage));
