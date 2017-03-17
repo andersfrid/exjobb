@@ -15,11 +15,12 @@ export class FightComponent implements OnInit {
   private damage:number;
   private computerDmg = 20;
   private hp:number;
-  private compHp = 200;
+  private compHp:number;
   private name:string;
   private img:string;
   private winner:string;
-
+  private maxHp:number;
+  private compMaxHp:number;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -30,7 +31,9 @@ export class FightComponent implements OnInit {
         this.img = data.char.charImage;
         this.name = data.char.charName;
         this.damage = data.char.combat[0].damage;
-
+        this.maxHp = this.hp;
+        this.compMaxHp = this.maxHp + 40;
+        this.compHp = this.compMaxHp;
       }else{
         console.log(data);
       }
