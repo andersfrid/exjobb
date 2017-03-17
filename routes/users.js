@@ -6,6 +6,7 @@ const User = require('../models/user');
 const config = require('../config/database');
 const Character = require('../models/character');
 const Achievment = require('../models/achievments');
+const Levels = require('../models/levels');
 const App = require('../app');
 
 //Register
@@ -65,12 +66,6 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
   res.json({user: req.user});
 });
 
-//Creates a character
-/*
-  Todo:
-    Make it so that is saves its ID to the user.
-    So that the user is linked to its character.
-*/
 router.post('/create-char', (req, res, next) => {
   let newChar = new Character({
     charName: req.body.name,
@@ -137,13 +132,24 @@ router.post('/setchar', (req, res, next) =>{
 });
 
 router.post('/getchar', (req, res, next) =>{
-      Character.getCharacterById(req.body.character, (err,char)=>{
-        if(err){
-          res.json({success:false, msg: 'Failed to find char', err:err});
-        }else{
-          res.json({success:true, char:char});
-        }
-      });
+    Character.getCharacterById(req.body.character, (err,char)=>{
+      if(err){
+        res.json({success:false, msg: 'Failed to find char', err:err});
+      }else{
+        res.json({success:true, char:char});
+      }
+    });
+});
+
+router.post('/level', (req, res, next) =>{
+  Levels.getLevels({}, (err,level)=>{
+    if(err){
+      res.json({success:false, msg:'Failed to get level', err:err});
+    }else{
+      res.json({success:true, level:level});
+    }
+  });
+
 });
 
 module.exports = router;
