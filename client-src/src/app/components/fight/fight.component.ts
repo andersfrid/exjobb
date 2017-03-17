@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-
+import { AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-fight',
@@ -12,9 +12,26 @@ export class FightComponent implements OnInit {
   private computerResult = new Array();
   public value = "";
   private set = "";
-  constructor() { }
+  private damage:number;
+  private computerDmg:number = 20;
+  private hp:number;
+  private name:string;
+  private img:string;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    var user = JSON.parse(this.authService.getUserLocaldata());
+    this.authService.getCharacter(user).subscribe(data =>{
+      if(data.success){
+        this.hp = data.char.combat[0].health;
+        this.img = data.char.charImage;
+        this.name = data.char.charName;
+        this.damage = data.char.combat[0].damage;
+      }else{
+        console.log(data);
+      }
+    });
   }
 
   doStartGame(playerOne, playerTwo) {
@@ -25,7 +42,6 @@ export class FightComponent implements OnInit {
 
 	}
   setMove(val){
-    //console.log(val);
     this.onElementSelected(val);
   }
   onElementSelected(playerResult) {
