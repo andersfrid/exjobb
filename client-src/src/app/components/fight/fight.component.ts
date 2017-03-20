@@ -21,6 +21,11 @@ export class FightComponent implements OnInit {
   private winner:string;
   private maxHp:number;
   private compMaxHp:number;
+  private playerMove:string;
+  private compMove:string;
+  private isAlivePlayer:boolean;
+  private isAliveComp:boolean;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -50,10 +55,10 @@ export class FightComponent implements OnInit {
   setMove(val){
     this.onElementSelected(val);
     //this.doStartGame();
-    console.log(this.hp);
   }
   onElementSelected(playerResult) {
 		this.shufflingResults.push(playerResult);
+    this.isAlivePlayer = true;
     this.establishTheWinner();
 	}
   establishTheWinner() {
@@ -88,8 +93,14 @@ export class FightComponent implements OnInit {
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "protect")){
       console.log("Nothing happens");
     }
-      this.computerResult = new Array();
 
+    if(this.isAlivePlayer == true && this.isAliveComp == true ){
+      this.playerMove = this.shufflingResults[0];
+      this.compMove = this.computerResult[0];
+    }
+      this.computerResult = new Array();
+      this.isAlivePlayer = false;
+      this.isAliveComp = false;
       if(this.compHp <= 0){
         this.winner = this.name + " wins!!";
         return this.winner;
@@ -119,7 +130,7 @@ export class FightComponent implements OnInit {
 					shufflingCounter++;
           if(shufflingCounter = 30){
             this.computerResult.push(this.value);
-            console.log("computer" + this.computerResult);
+            this.isAliveComp = true;
           }
 				}
 				else {

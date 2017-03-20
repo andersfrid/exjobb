@@ -9,8 +9,8 @@
 <div class="col-md-4">
   <p>{{name}}</p>
   <div class="progressPlayer">
-    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-      aria-valuemin="0" aria-valuemax="100" style="width:100%" >
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0"
+      aria-valuemin="0" aria-valuemax="100"  [style.width]="(hp/maxHp)*100 + '%'">
       {{hp}}/{{maxHp}} HP
     </div>
   </div>
@@ -21,21 +21,23 @@
 <div class="col-md-4">
   <p>Computer</p>
   <div class="progressComputer">
-    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40"
-    aria-valuemin="0" aria-valuemax="100" style="width:100%">
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0"
+    aria-valuemin="0" aria-valuemax="100" [style.width]="(compHp/compMaxHp)*100 + '%'">
     {{compHp}}/{{compMaxHp}} HP
     </div>
   </div>
 </div>
-<div class="col-md-6">
+<div class="col-md-6" id="player">
     <a><img id="char" src="{{img}}" alt="img1"></a>
+    <p id= "pMove"><strong>{{playerMove}}</strong></p>
     <div class="buttons">
     <button (click)="setMove('strike')">Strike</button>
     <button (click)="setMove('protect')">Protect</button>
     <button (click)="setMove('haymaker')">Haymaker</button>
   </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" id= "comp">
+    <p id= "cMove"><strong>{{compMove}}</strong></p>
       <a><img id="charComp" src="http://webshare.mah.se/ae3529/boss.png" alt="boss"></a>
   </div>
 </div>

@@ -10,6 +10,26 @@
 .buttons{
   padding: 2%;
 }
+
 .row{
   background-image: url("http://webshare.mah.se/ae3529/winter.jpg");
+}
+.progress-bar{
+  width: 100%;
+}
+/*
+#comp{
+  background-color: yellow;
+}
+#player{
+  background-color: blue;
+}
+*/
+#pMove{
+  font-size: 32px;
+  text-align: center;
+  float: right;
+}
+#cMove{
+  font-size: 32px;
 }
