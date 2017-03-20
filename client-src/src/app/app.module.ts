@@ -22,6 +22,7 @@ import { AuthService} from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { FightComponent } from './components/fight/fight.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
   {path:'create-char', component: CharacterCreationComponent, canActivate:[AuthGuard]},
   {path:'achievement', component: AchievementComponent, canActivate:[AuthGuard]},
   {path:'fight', component: FightComponent, canActivate:[AuthGuard]},
-  {path:'faq', component: FaqComponent}
+  {path:'faq', component: FaqComponent},
+  {path:'settings', component:SettingsComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     CharacterCreationComponent,
     AchievementComponent,
     FightComponent,
-    FaqComponent
+    FaqComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

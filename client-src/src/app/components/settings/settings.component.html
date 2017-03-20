@@ -1,0 +1,26 @@
+<div>
+  <h2 class="page-header">Account settings</h2>
+  <p>This is where you can change your email or password. You can also connect to twitter!
+  <div class="row">
+    <div class="col-md-12" >
+      <form (submit)="updateUser()">
+        <div class="form-group">
+          <label>Change email</label>
+          <input type="text" [(ngModel)]="email" name="email" class="form-control">
+          <label>Change password</label>
+          <input type="text" [(ngModel)]="password" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" >
+      <h4>Connect to twitter</h4>
+      <button [routerLink]="['/twitter']" type="button" class="btn btn-info btn-block">Connect to twitter</button>
+      <button [routerLink]="['/profile']" type="button" class="btn btn-info btn-block">Back</button>
+    </div>
+  </div>
+</div>
