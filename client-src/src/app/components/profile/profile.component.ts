@@ -9,18 +9,32 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user:Object;
+  image:any;
+  char:any;
   constructor(private authService:AuthService,
      private router:Router) { }
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      console.log(this.user);
       this.authService.updateUserLocal(this.user);
+      this.authService.getCharacter(this.user).subscribe(data =>{
+        if(data.success){
+          this.image = data.char.charImage;
+        }
+      },
+        err => {
+          console.log(err);
+          return false;
+      });
     },
   err => {
     console.log(err);
     return false;
   });
+    console.log(this.user);
+
   }
 
 }

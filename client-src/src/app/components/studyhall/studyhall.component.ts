@@ -7,16 +7,20 @@ import { Router } from '@angular/router';
   templateUrl: './studyhall.component.html',
   styleUrls: ['./studyhall.component.css']
 })
+
+
 export class StudyhallComponent implements OnInit {
   users:any;
-
-
+  xpWidth:number;
+  totalXp:number = 2000;
+  myXp:number = 1300;
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.calculateXp();
     this.authService.getStudyHallInfo().subscribe(data => {
       this.users = data.mySql;
       for(var i =0; i<this.users.length; i++){
@@ -28,5 +32,7 @@ export class StudyhallComponent implements OnInit {
     return false;
   });
   }
-
+  calculateXp(){
+    this.xpWidth = this.myXp / this.totalXp * 100;
+  }
 }

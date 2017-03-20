@@ -16,10 +16,13 @@ export class ArenaComponent implements OnInit {
   private wins:number;
   private losses:number;
 
+  xpWidth:number;
+  totalXp:number = 2000;
+  myXp:number = 1300;
+
   constructor(private authService: AuthService) { }
-
+  
   ngOnInit() {
-
     var user = JSON.parse(this.authService.getUserLocaldata());
     this.authService.getCharacter(user).subscribe(data =>{
       if(data.success){
@@ -35,6 +38,9 @@ export class ArenaComponent implements OnInit {
         console.log(data);
       }
     });
+    this.calculateXp();
   }
-
+  calculateXp(){
+    this.xpWidth = this.myXp / this.totalXp * 100;
+  }
 }
