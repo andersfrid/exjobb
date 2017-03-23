@@ -17,7 +17,8 @@
     "body-parser": "*",
     "passport": "*",
     "passport-jwt": "*",
-    "mysql": "*"
+    "mysql": "*",
+    "socket.io": "*"
   },
 "repository": {
     "type": "git",

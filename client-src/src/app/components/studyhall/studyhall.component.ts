@@ -10,21 +10,42 @@ import { Router } from '@angular/router';
 
 
 export class StudyhallComponent implements OnInit {
-  users:any;
+  mySqlData:any;
   xpWidth:number;
   totalXp:number = 2000;
-  myXp:number = 1300;
+  myXp:number;
+  level:number;
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    var user = JSON.parse(this.authService.getUserLocaldata());
+    this.authService.getCharacter(user).subscribe(data =>{
+      if(data.success){
+        console.log(data);
+        this.myXp = data.char.xp;
+        this.level = data.char.playerLvl;
+      }
+    },
+      err => {
+        console.log(err);
+        return false;
+    });
+
+    this.authService.getLevels().subscribe(data =>{
+      if(data.success){
+        console.log(data.level[this.level]);
+        this.totalXp = data.level[this.level].xp;
+      }
+    });
     this.calculateXp();
+
     this.authService.getStudyHallInfo().subscribe(data => {
-      this.users = data.mySql;
-      for(var i =0; i<this.users.length; i++){
-        console.log(this.users[i]);
+      this.mySqlData = data.mySql;
+      for(var i =0; i<this.mySqlData.length; i++){
+        console.log(this.mySqlData[i]);
       }
     },
   err => {

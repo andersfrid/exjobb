@@ -68,6 +68,13 @@ export class AuthService {
     .map(res => res.json());
   }
 
+  getLevels(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/level', {headers: headers})
+    .map(res => res.json());
+  }
+
   loggedIn(){
     return tokenNotExpired();
   }

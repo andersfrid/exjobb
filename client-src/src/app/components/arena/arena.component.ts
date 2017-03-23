@@ -17,11 +17,12 @@ export class ArenaComponent implements OnInit {
   private losses:number;
 
   xpWidth:number;
-  totalXp:number = 2000;
-  myXp:number = 1300;
+  totalXp:number;
+  myXp:number;
+
 
   constructor(private authService: AuthService) { }
-  
+
   ngOnInit() {
     var user = JSON.parse(this.authService.getUserLocaldata());
     this.authService.getCharacter(user).subscribe(data =>{
@@ -34,11 +35,20 @@ export class ArenaComponent implements OnInit {
         this.dmg =data.char.combat[0].damage;
         this.wins = data.char.combatRecord[0].wins;
         this.losses = data.char.combatRecord[0].losses;
+
+        this.myXp = data.char.xp;
       }else{
         console.log(data);
       }
     });
-    this.calculateXp();
+
+    this.authService.getLevels().subscribe(data =>{
+      if(data.success){
+        console.log(data.level[this.level]);
+        this.totalXp = data.level[this.level].xp;
+      }
+    });
+      this.calculateXp();
   }
   calculateXp(){
     this.xpWidth = this.myXp / this.totalXp * 100;

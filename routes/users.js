@@ -140,7 +140,7 @@ router.post('/getchar', (req, res, next) =>{
     });
 });
 
-router.post('/level', (req, res, next) =>{
+router.get('/level', (req, res, next) =>{
   Levels.getLevels({}, (err,level)=>{
     if(err){
       res.json({success:false, msg:'Failed to get level', err:err});

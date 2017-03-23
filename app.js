@@ -5,11 +5,12 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-
+const port = 3000;
 const app = express();
 const users = require('./routes/users');
+const server = app.listen(port);
+const io = require('socket.io').listen(server);
 
-const port = 3000;
 
 const mysql = require('mysql');
 var pool = mysql.createPool({
@@ -18,6 +19,55 @@ var pool = mysql.createPool({
     user: 'ae2332',
     password: 'GuldFisk1337',
     database: 'ae2332'
+});
+
+var usernames = {};
+
+var rooms = ['room1', 'room2', 'room3'];
+
+io.sockets.on('connection', function(socket){
+  //User is connected to io server
+  console.log('user has connected');
+  socket.on('adduser', function(username){
+    socket.username = username;
+    socket.room = 'room1';
+    usernames[username] = username;
+    socket.join('room1');
+    socket.emit('updatechat', 'SERVER', 'you have connected to room1');
+    socket.broadcast.to('room1').emit('updatechat', 'SERVER', username +' has connected to this room');
+    socket.emit('updaterooms', rooms, 'room1');
+  });
+
+  // when the client emits 'sendchat', this listens and executes
+	socket.on('sendMove', function (data) {
+		// we tell the client to execute 'updatechat' with 2 parameters
+		io.sockets.in(socket.room).emit('sendMove', socket.username, data);
+	});
+
+	socket.on('switchRoom', function(newroom){
+		// leave the current room (stored in session)
+		socket.leave(socket.room);
+		// join new room, received as function parameter
+		socket.join(newroom);
+		socket.emit('updatechat', 'SERVER', 'you have connected to '+ newroom);
+		// sent message to OLD room
+		socket.broadcast.to(socket.room).emit('updatechat', 'SERVER', socket.username+' has left this room');
+		// update socket session room title
+		socket.room = newroom;
+		socket.broadcast.to(newroom).emit('updatechat', 'SERVER', socket.username+' has joined this room');
+		socket.emit('updaterooms', rooms, newroom);
+	});
+
+	// when the user disconnects.. perform this
+	socket.on('disconnect', function(){
+		// remove the username from global usernames list
+		delete usernames[socket.username];
+		// update list of users in chat, client-side
+		io.sockets.emit('updateusers', usernames);
+		// echo globally that this client has left
+		socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+		socket.leave(socket.room);
+	});
 });
 
 mongoose.Promise = global.Promise;
@@ -77,8 +127,3 @@ exports.handleMySql = function({}, callback){
     });
   });
 }
-
-//start server
-app.listen(port, () => {
-  console.log('Server started on port '+port);
-});
