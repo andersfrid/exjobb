@@ -36,6 +36,7 @@ export class FightComponent implements OnInit {
         this.img = data.char.charImage;
         this.name = data.char.charName;
         this.damage = data.char.combat[0].damage;
+        //add computer damage to be as player
         this.maxHp = this.hp;
         this.compMaxHp = this.maxHp + 40;
         this.compHp = this.compMaxHp;
