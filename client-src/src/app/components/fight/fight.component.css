@@ -1,3 +1,23 @@
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 767px) {
+  #char{
+    width: 40%;
+    padding: 5%;
+    float: left;
+  }
+  #charComp{
+    width: 40%;
+    padding: 5%;
+    float: right;
+  }
+  .buttons{
+    padding: 2%;
+  }
+}
+
+.container{
+  background-image: url("http://webshare.mah.se/ae3529/winter.jpg");
+}
 #char{
   width: 40%;
   padding: 5%;
@@ -7,29 +27,16 @@
   padding: 5%;
   float: right;
 }
-.buttons{
-  padding: 2%;
-}
-
-.row{
-  background-image: url("http://webshare.mah.se/ae3529/winter.jpg");
-}
-.progress-bar{
-  width: 100%;
-}
-/*
-#comp{
-  background-color: yellow;
-}
-#player{
-  background-color: blue;
-}
-*/
-#pMove{
-  font-size: 32px;
+.name{
   text-align: center;
-  float: right;
 }
 #cMove{
-  font-size: 32px;
+  text-align: center;
+}
+#pMove{
+  text-align: center;
+}
+#buttons{
+  background-color: black;
+  align-self: auto;
 }

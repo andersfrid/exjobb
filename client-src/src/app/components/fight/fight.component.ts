@@ -13,7 +13,7 @@ export class FightComponent implements OnInit {
   public value = "";
   private set = "";
   private damage:number;
-  private computerDmg = 20;
+  private computerDmg:number;
   private hp:number;
   private compHp:number;
   private name:string;
@@ -25,6 +25,9 @@ export class FightComponent implements OnInit {
   private compMove:string;
   private isAlivePlayer:boolean;
   private isAliveComp:boolean;
+  private wins:number;
+  private loss:number;
+  private xp:number;
 
   constructor(private authService: AuthService) { }
 
@@ -36,10 +39,13 @@ export class FightComponent implements OnInit {
         this.img = data.char.charImage;
         this.name = data.char.charName;
         this.damage = data.char.combat[0].damage;
-        //add computer damage to be as player
+        this.computerDmg = this.damage;
         this.maxHp = this.hp;
         this.compMaxHp = this.maxHp + 40;
         this.compHp = this.compMaxHp;
+        this.wins = data.char.combatRecord[0].wins;
+        this.loss = data.char.combatRecord[0].losses;
+        console.log(data);
       }else{
         console.log(data);
       }
@@ -104,9 +110,13 @@ export class FightComponent implements OnInit {
       this.isAliveComp = false;
       if(this.compHp <= 0){
         this.winner = this.name + " wins!!";
+        this.wins = this.wins +1;
+        console.log(this.wins);
         return this.winner;
       }if(this.hp <= 0){
         this.winner = "Computer wins!!";
+        this.loss = this.loss +1;
+        console.log(this.loss);
         return this.winner;
       }
       this.getHp();

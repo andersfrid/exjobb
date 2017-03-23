@@ -4,8 +4,8 @@
     <ul *ngFor="let doneAchievement of doneAchievements" class="list-group">
       <li class="list-group-item list-group-item-success"><strong>{{doneAchievement.name}}</strong>
         <br> {{doneAchievement.description}}
-        <br> {{doneAchievement.reward}} XP</li>
-        <a href="https://twitter.com/intent/tweet?button_hashtag=MaHGamified" class="twitter-hashtag-button" data-show-count="false">#Gamified</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br> {{doneAchievement.reward}} XP
+      <a id="twitter" href="https://twitter.com/intent/tweet?button_hashtag=MaHGamified" class="twitter-hashtag-button" data-show-count="false">#Gamified</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
     </ul>
   </div>
   <div *ngIf="notDoneAchievements" class="col-md-12">

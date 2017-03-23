@@ -1,42 +1,45 @@
-<div class="row">
-  <div class="col-md-12 text-center">
+<div class= "container">
+  <div class ="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 text-center">
     <h1>Fight Mode</h1>
     <p>Write something usefull over here</p>
     <h3>{{winner}}</h3>
     <button (click)="doStartGame('playerOne', 'computer')">Start Round</button>
+  </div>
 </div>
-<div class="col-md-4">
-  <p>{{name}}</p>
+<div class="row" id="vs">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <p class="name">{{name}}</p>
+      <p id= "pMove"><strong>{{playerMove}}</strong></p>
   <div class="progressPlayer">
     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0"
-      aria-valuemin="0" aria-valuemax="100"  [style.width]="(hp/maxHp)*100 + '%'">
-      {{hp}}/{{maxHp}} HP
+        aria-valuemin="0" aria-valuemax="100"  [style.width]="(hp/maxHp)*100 + '%'">
+        {{hp}}/{{maxHp}} HP
+    </div>
+      <a><img id="char" src="{{img}}" alt="img1"></a>
+  </div>
+</div>
+<div class="row" id="comp">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <p class="name">Computer</p>
+      <p id= "cMove"><strong>{{compMove}}</strong></p>
+      <div class="progressComputer">
+        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100" [style.width]="(compHp/compMaxHp)*100 + '%'">
+          {{compHp}}/{{compMaxHp}} HP
+        </div>
+          <a><img id="charComp" src="http://webshare.mah.se/ae3529/boss.png" alt="boss"></a>
+      </div>
     </div>
   </div>
-</div>
-<div class="col-md-4 text-center">
-  <h3>VS</h3>
-</div>
-<div class="col-md-4">
-  <p>Computer</p>
-  <div class="progressComputer">
-    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0"
-    aria-valuemin="0" aria-valuemax="100" [style.width]="(compHp/compMaxHp)*100 + '%'">
-    {{compHp}}/{{compMaxHp}} HP
+  <div class="row" id="buttons">
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+      <div class="buttons">
+          <button (click)="setMove('strike')"><img src="http://webshare.mah.se/ae3529/strike_40x40.png"></button>
+          <button (click)="setMove('protect')"><img src="http://webshare.mah.se/ae3529/protect_40x40.png"></button>
+          <button (click)="setMove('haymaker')"><img src="http://webshare.mah.se/ae3529/haymaker_40x40.png"></button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="col-md-6" id="player">
-    <a><img id="char" src="{{img}}" alt="img1"></a>
-    <p id= "pMove"><strong>{{playerMove}}</strong></p>
-    <div class="buttons">
-    <button (click)="setMove('strike')">Strike</button>
-    <button (click)="setMove('protect')">Protect</button>
-    <button (click)="setMove('haymaker')">Haymaker</button>
-  </div>
-  </div>
-  <div class="col-md-6" id= "comp">
-    <p id= "cMove"><strong>{{compMove}}</strong></p>
-      <a><img id="charComp" src="http://webshare.mah.se/ae3529/boss.png" alt="boss"></a>
   </div>
 </div>
