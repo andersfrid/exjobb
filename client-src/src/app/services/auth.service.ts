@@ -75,6 +75,13 @@ export class AuthService {
     .map(res => res.json());
   }
 
+  updateChar(char){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/update-char' , char, {headers: headers})
+    .map(res => res.json());
+  }
+
   loggedIn(){
     return tokenNotExpired();
   }

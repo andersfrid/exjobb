@@ -150,4 +150,9 @@ router.get('/level', (req, res, next) =>{
   });
 });
 
+router.post('/update-char', (req, res, next) => {
+  console.log('take me to the updating');
+  res.json({success:true, msg:'update me'});
+});
+
 module.exports = router;

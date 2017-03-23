@@ -15,11 +15,6 @@ export class AchievementComponent implements OnInit {
   character:any;
   constructor(private authService:AuthService,private router: Router,) { }
 
-/*
-  Check if achive is done then store in done.
-  Save done achivements in array
-  Save not done achivements in array
-*/
   ngOnInit() {
     this.authService.getAchievements().subscribe(data => {
       this.achievements = data.achievment;
@@ -43,5 +38,12 @@ export class AchievementComponent implements OnInit {
     console.log(err);
     return false;
   });
+
+  this.checkIfuserGotAnyNewAchievements();
+  }
+
+  checkIfuserGotAnyNewAchievements(){
+    console.log(this.doneAchievements);
+    console.log(this.notDoneAchievements);
   }
 }

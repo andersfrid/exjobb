@@ -55,6 +55,11 @@ module.exports.getCharacterById = function(id, callback){
   Character.findById({_id:id}, callback);
 }
 
+//HUR SKA VI UPPDATERA MÅSTE LÄRA OSS DET!!
+module.exports.updateChar = function(){
+
+}
+
 module.exports.createCharacter = function(newChar, callback){
   newChar.save(callback);
 }
