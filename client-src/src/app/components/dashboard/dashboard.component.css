@@ -2,38 +2,81 @@
   margin-top:20px;
 }
 
-#arena{
-  display: block;
-  width: 40%;
+@media(max-width:767px){
+  #arenaTitle{
+    margin-left: 20%;
+  }
+
+  #arenaImg{
+    width: 35%;
+    display: block;
+    margin: auto;
+  }
+
+  #studyTitle{
+    margin-left: 20%;
+  }
+
+  #studyhallImg{
+    display: block;
+    margin: auto;
+    width: 30%;
+  }
+
+  #profileImg{
+    display: block;
+    margin: auto;
+    width: 20%;
+  }
+
+  #char{
+    text-align: center;
+  }
+
+  #lvl{
+    text-align: center;
+  }
+  .hpbar{
+    width: 30%;
+    margin: auto;
+    padding-bottom: 5%;
+  }
 }
 
-#studyhall{
-  width: 30%;
-  display: block;
-  float: right;
-}
-#study{
-  float: right;
-  padding-right: 5%;
-}
+@media(min-width: 768px){
+  #arenaImg{
+    width: 40%;
+  }
 
+  #studyTitle{
+    float:right;
+    display: block;
+    padding-right: 5%;
+  }
 
-#profile{
-  display: block;
-  margin: auto;
-  width: 15%;
-}
+  #studyhallImg{
+    float: right;
+    width: 35%;
+  }
 
-#char{
-  text-align: center;
-}
+  #profileImg{
+    display: block;
+    margin: auto;
+    width: 15%;
+  }
 
-#lvl{
-  text-align: center;
-}
+  #char{
+    text-align: center;
+  }
 
-.hpbar{
-  width: 25%;
-  margin: auto;
-  padding-bottom: 5%;
+  #lvl{
+    text-align: center;
+  }
+
+  .hpbar{
+    width: 25%;
+    margin: auto;
+    padding-bottom: 5%;
+  }
+
 }
