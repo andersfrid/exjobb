@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { AuthService} from '../../services/auth.service';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-fight',
@@ -28,6 +29,7 @@ export class FightComponent implements OnInit {
   private wins:number;
   private loss:number;
   private xp:number;
+  private timer:number;
 
   constructor(private authService: AuthService) { }
 
@@ -57,12 +59,28 @@ export class FightComponent implements OnInit {
 		this.shufflingResults = new Array();
 		this.gameResult = "";
 		this.startShuffling();
+    this.startTimer();
 
 	}
   setMove(val){
     this.onElementSelected(val);
     //this.doStartGame();
   }
+
+  startTimer(){
+    var tick = 10;
+    var number = Observable.timer(2000, 1000);
+    var subscription = number.subscribe(x => {
+      this.timer = tick-x;
+      if(x == 10){
+        subscription.unsubscribe();
+        this.shufflingResults = new Array();
+        this.gameResult = "";
+        this.startShuffling();
+        this.startTimer();
+    }
+  });
+}
   onElementSelected(playerResult) {
 		this.shufflingResults.push(playerResult);
     this.isAlivePlayer = true;
