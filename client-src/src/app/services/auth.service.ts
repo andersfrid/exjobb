@@ -92,12 +92,12 @@ export class AuthService {
   }
 
   setCharLocalStorage(data){
-    localStorage.setItem('character', JSON.stringify(data.newChar));
+    localStorage.setItem('character', JSON.stringify(data));
   }
 
   getCharacterLocalStorage(){
-    const charact = localStorage.getItem('character');
-    return this.char = charact;
+    var char = localStorage.getItem('character');
+    return char;
   }
 
   updateUserLocal(user){
@@ -113,7 +113,7 @@ export class AuthService {
   }
 
   getUserLocaldata(){
-    const user = localStorage.getItem('user');
+    var user = localStorage.getItem('user');
     return user;
   }
 

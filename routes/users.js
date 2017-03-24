@@ -82,7 +82,7 @@ router.post('/create-char', (req, res, next) => {
       losses: 0
     }],
     achievements:[{
-      name: "Baby steps"
+      name: ''
     }]
   });
 

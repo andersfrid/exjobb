@@ -24,7 +24,6 @@ export class StudyhallComponent implements OnInit {
     var user = JSON.parse(this.authService.getUserLocaldata());
     this.authService.getCharacter(user).subscribe(data =>{
       if(data.success){
-        console.log(data);
         this.myXp = data.char.xp;
         this.level = data.char.playerLvl;
       }
@@ -44,9 +43,10 @@ export class StudyhallComponent implements OnInit {
 
     this.authService.getStudyHallInfo().subscribe(data => {
       this.mySqlData = data.mySql;
+      /*
       for(var i =0; i<this.mySqlData.length; i++){
         console.log(this.mySqlData[i]);
-      }
+      }*/
     },
   err => {
     console.log(err);
