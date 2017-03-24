@@ -31,6 +31,7 @@ export class FightComponent implements OnInit {
   private xp:number;
   private timer:number;
 
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -137,6 +138,7 @@ export class FightComponent implements OnInit {
         console.log(this.loss);
         return this.winner;
       }
+      //this.isValid = false;
       this.getHp();
       this.getCompHp();
   }
