@@ -30,7 +30,7 @@ export class FightComponent implements OnInit {
   private loss:number;
   private xp:number;
   private timer:number;
-
+  private id:any;
 
   constructor(private authService: AuthService) { }
 
@@ -38,7 +38,7 @@ export class FightComponent implements OnInit {
     var user = JSON.parse(this.authService.getUserLocaldata());
     this.authService.getCharacter(user).subscribe(data =>{
       if(data.success){
-        this.hp = data.char.combat[0].health;
+        this.hp = 10;//data.char.combat[0].health;
         this.img = data.char.charImage;
         this.name = data.char.charName;
         this.damage = data.char.combat[0].damage;
@@ -48,9 +48,10 @@ export class FightComponent implements OnInit {
         this.compHp = this.compMaxHp;
         this.wins = data.char.combatRecord[0].wins;
         this.loss = data.char.combatRecord[0].losses;
-        console.log(data);
+        this.id = data.char._id;
+        //console.log(data);
       }else{
-        console.log(data);
+        //console.log(data);
       }
     });
   }
@@ -69,11 +70,11 @@ export class FightComponent implements OnInit {
   }
 
   startTimer(){
-    var tick = 10;
+    var tick = 5;
     var number = Observable.timer(2000, 1000);
     var subscription = number.subscribe(x => {
       this.timer = tick-x;
-      if(x == 10){
+      if(x == 5){
         subscription.unsubscribe();
         this.shufflingResults = new Array();
         this.gameResult = "";
@@ -127,21 +128,52 @@ export class FightComponent implements OnInit {
       this.computerResult = new Array();
       this.isAlivePlayer = false;
       this.isAliveComp = false;
+
       if(this.compHp <= 0){
         this.winner = this.name + " wins!!";
-        this.wins = this.wins +1;
-        console.log(this.wins);
+        this.wins += 1;
+        console.log("winner" + this.winner);
+        var char = {
+          combatStats:true,
+          _id:this.id,
+          wins:this.wins,
+          losses:this.loss
+        };
+        this.authService.updateChar(char).subscribe(data =>{
+          if(data.success){
+            console.log(data);
+          }else{
+            console.log(data);
+          }
+        });
+      //console.log(this.wins);
         return this.winner;
       }if(this.hp <= 0){
         this.winner = "Computer wins!!";
-        this.loss = this.loss +1;
+        this.loss += 1;
         console.log(this.loss);
+        console.log("winner" + this.winner);
+        var char = {
+          combatStats:true,
+          _id:this.id,
+          wins:this.wins,
+          losses:this.loss
+        };
+        this.authService.updateChar(char).subscribe(data =>{
+          if(data.success){
+            console.log(data);
+          }else{
+            console.log(data);
+          }
+        });
+      //  console.log(this.loss);
         return this.winner;
       }
-      //this.isValid = false;
+
       this.getHp();
       this.getCompHp();
   }
+
 
   getHp(){
     return this.hp;
