@@ -55,15 +55,14 @@ export class AchievementComponent implements OnInit {
     var loss = char.char.combatRecord[0].losses;
     var totalFights = win + loss;
     var charAchievements = char.char.achievements;
-    console.log(char.char);
+    console.log(char.char._id);
     this.mongoChar = char.char;
     this.authService.setCharLocalStorage(char.char);
     for(var i = 0; i<charAchievements.length; i++){
-      if(totalFights == 1 && charAchievements[i].name !== "Baby steps"){
+      if(totalFights >= 1 && charAchievements[i].name != "Baby steps"){
         var upChar = {
-          id: char._id,
-          achievement:'Baby steps',
-          xp:10
+          _id:char.char._id,
+          achiev:'Baby steps'
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
@@ -73,11 +72,10 @@ export class AchievementComponent implements OnInit {
             console.log(data.msg);
           }
         });
-      }else if(totalFights == 15 && charAchievements[i].name !== "They grow up so fast"){
+      }else if(totalFights >= 15 && charAchievements[i].name != "They grow up so fast"){
         var upChar = {
-          id: char._id,
-          achievement:'They grow up so fast',
-          xp:100
+          _id:char.char._id,
+          achiev:'They grow up so fast'
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
@@ -88,11 +86,10 @@ export class AchievementComponent implements OnInit {
           }
         });
       }
-      if(win == 1 && charAchievements[i].name !== "Cheap shot"){
+      if(win >= 1 && charAchievements[i].name != "Cheap shot"){
         var upChar = {
-          id: char._id,
-          achievement:'Cheap shot',
-          xp:10
+          _id:char.char._id,
+          achiev:'Cheap shot'
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
@@ -102,11 +99,10 @@ export class AchievementComponent implements OnInit {
             console.log(data.msg);
           }
         });
-      }else if(win == 20 && charAchievements[i].name !== "Scalping"){
+      }else if(win >= 20 && charAchievements[i].name != "Scalping"){
         var upChar = {
-          id: char._id,
-          achievement:'Scalping',
-          xp:150
+          _id:char.char._id,
+          achiev:'Scalping'
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
