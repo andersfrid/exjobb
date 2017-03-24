@@ -56,8 +56,19 @@ module.exports.getCharacterById = function(id, callback){
 }
 
 //HUR SKA VI UPPDATERA MÅSTE LÄRA OSS DET!!
-module.exports.updateChar = function(){
-
+//DMG HP LVL XP Win Loss, Achievment
+module.exports.updateChar = function(data, callback){
+  if(data.lvl){
+    Character.update({_id:data._id},{$set:{playerLvl: data.lvl}}, callback);
+  }else if(data.combat){
+    Character.update({_id:data._id},{$set:{combat:{health:data.hp, damage:data.dmg}}}, callback);
+  }else if(data.combatStats){
+    Character.update({_id:data._id},{$set:{combatRecord:{wins:data.wins, losses:data.losses}}}, callback);
+  }else if(data.xp){
+    Character.update({_id:data._id},{$set:{xp: data.xp}}, callback);
+  }else if(data.achiev){
+    Character.update({_id:data._id},{$push:{achievements:{name:data.achiev}}}, callback);
+  }
 }
 
 module.exports.createCharacter = function(newChar, callback){

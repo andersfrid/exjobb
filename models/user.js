@@ -30,12 +30,12 @@ module.exports.getUsersById = function(id, callback){
 }
 
 module.exports.getUsersByUsername = function(username, callback){
-  const query = {username: username}
+  const query = {username: username};
   User.findOne(query, callback);
 }
 
 module.exports.updateUser = function(yass, callback){
-  User.update({username: yass.username},{$set:{character: yass.id}}, callback)
+  User.update({username: yass.username},{$set:{character: yass.id}}, callback);
 }
 
 module.exports.addUser = function(newUser, callback){

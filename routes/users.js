@@ -151,8 +151,13 @@ router.get('/level', (req, res, next) =>{
 });
 
 router.post('/update-char', (req, res, next) => {
-  console.log('take me to the updating');
-  res.json({success:true, msg:'update me'});
+  Character.updateChar(req.body, (err,data) =>{
+    if(err){
+      res.json({success:false, msg:'Failed update char', err:err});
+    }else{
+      res.json({success:true, data:data});
+    }
+  });
 });
 
 module.exports = router;
