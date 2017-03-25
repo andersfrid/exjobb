@@ -48,7 +48,7 @@ export class ArenaComponent implements OnInit {
         this.totalXp = data.level[this.level].xp;
       }
     });
-      this.calculateXp();
+    this.calculateXp();
   }
   calculateXp(){
     this.xpWidth = this.myXp / this.totalXp * 100;
