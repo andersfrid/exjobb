@@ -38,13 +38,13 @@ export class FightComponent implements OnInit {
     var user = JSON.parse(this.authService.getUserLocaldata());
     this.authService.getCharacter(user).subscribe(data =>{
       if(data.success){
-        this.hp = 10;//data.char.combat[0].health;
+        this.hp = 20000;//data.char.combat[0].health;
         this.img = data.char.charImage;
         this.name = data.char.charName;
         this.damage = data.char.combat[0].damage;
         this.computerDmg = this.damage;
         this.maxHp = this.hp;
-        this.compMaxHp = this.maxHp + 40;
+        this.compMaxHp =  20;//this.maxHp + 40;
         this.compHp = this.compMaxHp;
         this.wins = data.char.combatRecord[0].wins;
         this.loss = data.char.combatRecord[0].losses;
@@ -141,11 +141,22 @@ export class FightComponent implements OnInit {
         };
         this.authService.updateChar(char).subscribe(data =>{
           if(data.success){
-            console.log(data);
+            var xp = {
+              xp:100,
+              _id:this.id
+            };
+            this.authService.updateChar(xp).subscribe(data =>{
+              if(data.success){
+                console.log(data);
+              }else{
+                console.log(data);
+              }
+            });
           }else{
             console.log(data);
           }
         });
+
       //console.log(this.wins);
         return this.winner;
       }if(this.hp <= 0){
