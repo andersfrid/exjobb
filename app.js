@@ -8,8 +8,12 @@ const config = require('./config/database');
 const port = 3000;
 const app = express();
 const users = require('./routes/users');
+
 const server = app.listen(port);
 const io = require('socket.io').listen(server);
+
+
+
 
 
 const mysql = require('mysql');
@@ -21,6 +25,16 @@ var pool = mysql.createPool({
     database: 'ae2332'
 });
 
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+
+/*
 var usernames = {};
 
 var rooms = ['room1', 'room2', 'room3'];
@@ -69,7 +83,7 @@ io.sockets.on('connection', function(socket){
 		socket.leave(socket.room);
 	});
 });
-
+*/
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
