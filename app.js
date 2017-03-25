@@ -5,16 +5,12 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-const port = 3000;
+const port = process.env.PORT || 8080;
 const app = express();
 const users = require('./routes/users');
 
 const server = app.listen(port);
-const io = require('socket.io').listen(server);
-
-
-
-
+//const io = require('socket.io').listen(server);
 
 const mysql = require('mysql');
 var pool = mysql.createPool({
@@ -25,7 +21,7 @@ var pool = mysql.createPool({
     database: 'ae2332'
 });
 
-
+/*
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('disconnect', function(){
@@ -33,7 +29,7 @@ io.on('connection', function(socket){
   });
 });
 
-
+*/
 /*
 var usernames = {};
 

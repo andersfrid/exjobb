@@ -13,21 +13,21 @@ export class AuthService {
   registerUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
+    return this.http.post('users/register', user, {headers: headers})
       .map(res => res.json());
   }
 
   registerCharacter(char){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/create-char', char, {headers: headers})
+    return this.http.post('users/create-char', char, {headers: headers})
       .map(res => res.json());
   }
 
   authenticateUser(user){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/users/authenticate', user,{headers: headers})
+    return this.http.post('users/authenticate', user,{headers: headers})
       .map(res => res.json());
   }
 
@@ -36,49 +36,49 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type','application/json');
-    return this.http.get('http://localhost:3000/users/profile',{headers: headers})
+    return this.http.get('users/profile',{headers: headers})
       .map(res => res.json());
   }
 
   getStudyHallInfo(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/studyhall', {headers: headers})
+    return this.http.get('users/studyhall', {headers: headers})
     .map(res => res.json());
   }
 
   getAchievements(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/achievement', {headers: headers})
+    return this.http.get('users/achievement', {headers: headers})
     .map(res => res.json());
   }
 
   setUserChar(user){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:3000/users/setchar', user ,{headers: headers})
+    return this.http.post('users/setchar', user ,{headers: headers})
       .map(res => res.json());
   }
 
   getCharacter(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/getchar' , user, {headers: headers})
+    return this.http.post('users/getchar' , user, {headers: headers})
     .map(res => res.json());
   }
 
   getLevels(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/level', {headers: headers})
+    return this.http.get('users/level', {headers: headers})
     .map(res => res.json());
   }
 
   updateChar(char){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/update-char' , char, {headers: headers})
+    return this.http.post('users/update-char' , char, {headers: headers})
     .map(res => res.json());
   }
 
