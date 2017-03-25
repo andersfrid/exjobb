@@ -81,9 +81,14 @@ router.post('/create-char', (req, res, next) => {
       wins: 0,
       losses: 0
     }],
-    achievements:[{
-      name: ''
-    }]
+    achievements:[
+      { name: "Created character", description:"Created a character", reward:10, collected:false },
+      { name: "Baby steps", description: "Took part in your first duel", reward:10, collected:false },
+      { name: "They grow up so fast", description: "Fought 15 times", reward:100, collected:false },
+      { name: "Cheap shot", description: "Won your first duel", reward:10, collected:false },
+      { name: "Scalping", description: "Won 20 fights", reward:150, collected:false },
+      { name: "Ear collerctor", description: "Won 1337 fights", reward:1000, collected:false }
+    ]
   });
 
   Character.createCharacter(newChar, (err, character) => {

@@ -11,14 +11,7 @@ import { Router } from '@angular/router';
 export class AchievementComponent implements OnInit {
   notDoneAchievements = [];
   doneAchievements = [];
-  achievements= [
-      { name: "Baby steps", description: "Took part in your first duel", reward:10},
-      { name: "They grow up so fast", description: "Fought 15 times", reward:100},
-      { name: "Cheap shot", description: "Won your first duel", reward:10},
-      { name: "Scalping", description: "Won 20 fights", reward:150},
-      { name: "Ear collerctor", description: "Won 1337 fights", reward:'Cosmetic reward'}];
-  characterFights = [];
-  mongoChar:any;
+  bool = [];
 
   constructor(private authService:AuthService,private router: Router,) { }
 
@@ -27,7 +20,10 @@ export class AchievementComponent implements OnInit {
     var obj = JSON.parse(user);
     this.authService.getCharacter(obj).subscribe(char =>{
       if(char.success){
-        this.checkIfuserGotAnyNewAchievements(char);
+        for(var i = 0; i < char.char.achievements.length; i++){
+          this.bool[i] = char.char.achievements[i].collected;
+        }
+        this.checkIfuserGotAnyNewAchievements(char.char);
         this.printAchievements();
       }else{
         console.log(char.msg);
@@ -37,77 +33,172 @@ export class AchievementComponent implements OnInit {
 
   printAchievements(){
     var char = JSON.parse(this.authService.getCharacterLocalStorage());
-    console.log(this.mongoChar);
     for(var i = 0; i<char.achievements.length; i++){
-      var temp = char.achievements[i].name;
-      for(var j = 0; j<this.achievements.length; j++){
-        if(this.achievements[j].name == temp){
-          this.doneAchievements.push(this.achievements[j]);
-        }else{
-          this.notDoneAchievements.push(this.achievements[j]);
-        }
+      var temp = char.achievements[i];
+      if(this.bool[i]){
+        this.doneAchievements.push(temp);
+      }else{
+        this.notDoneAchievements.push(temp);
       }
+
     }
   }
 
   checkIfuserGotAnyNewAchievements(char){
-    var win = char.char.combatRecord[0].wins
-    var loss = char.char.combatRecord[0].losses;
+    var win = char.combatRecord[0].wins
+    var loss = char.combatRecord[0].losses;
     var totalFights = win + loss;
-    var charAchievements = char.char.achievements;
-    console.log(char.char._id);
-    this.mongoChar = char.char;
-    this.authService.setCharLocalStorage(char.char);
+    var charAchievements = char.achievements;
+    this.authService.setCharLocalStorage(char);
     for(var i = 0; i<charAchievements.length; i++){
-      if(totalFights >= 1 && charAchievements[i].name != "Baby steps"){
+      if((charAchievements[i].name === 'Created character') && !this.bool[i]){
+        this.bool[i] = true;
         var upChar = {
-          _id:char.char._id,
-          achiev:'Baby steps'
+	         "achiev":true,
+	          "_id": char._id,
+	          "name":"Created character"
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
-            console.log(data);
-            this.authService.setCharLocalStorage(data);
+            var upXP = {
+              "xp":10,
+              "_id": char._id
+            }
+            this.authService.updateChar(upXP).subscribe(data =>{
+              if(data.success){
+                console.log('YAAAY XP');
+              }else{
+                console.log(data.msg);
+              }
+            });
           }else{
             console.log(data.msg);
           }
         });
-      }else if(totalFights >= 15 && charAchievements[i].name != "They grow up so fast"){
+
+      }
+
+      if(totalFights >= 1 && (charAchievements[i].name === "Baby steps") && !this.bool[i]){
+        this.bool[i] = true;
         var upChar = {
-          _id:char.char._id,
-          achiev:'They grow up so fast'
+           "achiev":true,
+            "_id": char._id,
+            "name":"Baby steps"
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
-            console.log(data);
-            this.authService.setCharLocalStorage(data);
+            var upXP = {
+              "xp":10,
+              "_id": char._id
+            }
+            this.authService.updateChar(upXP).subscribe(data =>{
+              if(data.success){
+                console.log('YAAAY XP');
+              }else{
+                console.log(data.msg);
+              }
+            });
+          }else{
+            console.log(data.msg);
+          }
+        });
+
+      }else if(totalFights >= 15 && (charAchievements[i].name === "They grow up so fast") && !this.bool[i]){
+        this.bool[i] = true;
+        var upChar = {
+	         "achiev":true,
+	          "_id": char._id,
+	          "name":"They grow up so fast"
+        }
+        this.authService.updateChar(upChar).subscribe(data =>{
+          if(data.success){
+            var upXP = {
+              "xp":100,
+              "_id": char._id
+            }
+            this.authService.updateChar(upXP).subscribe(data =>{
+              if(data.success){
+                console.log('YAAAY XP');
+              }else{
+                console.log(data.msg);
+              }
+            });
           }else{
             console.log(data.msg);
           }
         });
       }
-      if(win >= 1 && charAchievements[i].name != "Cheap shot"){
+
+      if(win >= 1 && (charAchievements[i].name === "Cheap shot") && !this.bool[i]){
+        this.bool[i] = true;
         var upChar = {
-          _id:char.char._id,
-          achiev:'Cheap shot'
+	         "achiev":true,
+	          "_id": char._id,
+	          "name":"Cheap shot"
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
-            console.log(data);
-            this.authService.setCharLocalStorage(data);
+            var upXP = {
+              "xp":10,
+              "_id": char._id
+            }
+            this.authService.updateChar(upXP).subscribe(data =>{
+              if(data.success){
+                console.log('YAAAY XP');
+              }else{
+                console.log(data.msg);
+              }
+            });
           }else{
             console.log(data.msg);
           }
         });
-      }else if(win >= 20 && charAchievements[i].name != "Scalping"){
+
+      }else if(win >= 20 && (charAchievements[i].name === "Scalping") && !this.bool[i]){
+        this.bool[i] = true;
         var upChar = {
-          _id:char.char._id,
-          achiev:'Scalping'
+	         "achiev":true,
+	          "_id": char._id,
+	          "name":"Scalping"
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
-            console.log(data);
-            this.authService.setCharLocalStorage(data);
+            var upXP = {
+              "xp":150,
+              "_id": char._id
+            }
+            this.authService.updateChar(upXP).subscribe(data =>{
+              if(data.success){
+                console.log('YAAAY XP');
+              }else{
+                console.log(data.msg);
+              }
+            });
+          }else{
+            console.log(data.msg);
+          }
+        });
+
+      }else if(win >= 1337 && (charAchievements[i].name === "Ear collerctor") && !this.bool[i]){
+        this.bool[i] = true;
+        var upChar = {
+	         "achiev":true,
+	          "_id": char._id,
+	          "name":"Ear collerctor"
+        }
+        this.authService.updateChar(upChar).subscribe(data =>{
+          if(data.success){
+            var upXP = {
+              "xp":1000,
+              "_id": char._id
+            }
+            this.authService.updateChar(upXP).subscribe(data =>{
+              if(data.success){
+                console.log('YAAAY XP');
+              }else{
+                console.log(data.msg);
+              }
+            });
           }else{
             console.log(data.msg);
           }

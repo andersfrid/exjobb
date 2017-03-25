@@ -44,7 +44,20 @@ const CharacterSchema = mongoose.Schema({
   }],
   achievements:[{
     name:{
-      type:String
+      type:String,
+      required:true
+    },
+    description:{
+      type:String,
+      required:true
+    },
+    reward:{
+      type:Number,
+      required:true
+    },
+    collected:{
+      type:Boolean,
+      required:true
     }
   }]
 });
@@ -65,9 +78,9 @@ module.exports.updateChar = function(data, callback){
   }else if(data.combatStats){
     Character.update({_id:data._id},{$set:{combatRecord:{wins:data.wins, losses:data.losses}}}, callback);
   }else if(data.xp){
-    Character.update({_id:data._id},{$set:{xp: data.xp}}, callback);
+    Character.update({_id:data._id},{$inc:{xp: data.xp}}, callback);
   }else if(data.achiev){
-    Character.update({_id:data._id},{$push:{achievements:{name:data.achiev}}}, callback);
+    Character.update({_id:data._id,"achievements":{$elemMatch:{name:data.name}}},{$set:{"achievements.$.collected":true}}, callback);
   }
 }
 
