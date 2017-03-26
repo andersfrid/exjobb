@@ -30,6 +30,7 @@ export class FightComponent implements OnInit {
   private loss:number;
   private xp:number;
   private timer:number;
+  private subscription:any;
   private id:any;
 
   constructor(private authService: AuthService) { }
@@ -38,13 +39,13 @@ export class FightComponent implements OnInit {
     var user = JSON.parse(this.authService.getUserLocaldata());
     this.authService.getCharacter(user).subscribe(data =>{
       if(data.success){
-        this.hp = 20000;//data.char.combat[0].health;
+        this.hp = data.char.combat[0].health;
         this.img = data.char.charImage;
         this.name = data.char.charName;
         this.damage = data.char.combat[0].damage;
         this.computerDmg = this.damage;
         this.maxHp = this.hp;
-        this.compMaxHp =  20;//this.maxHp + 40;
+        this.compMaxHp = this.maxHp + 40;
         this.compHp = this.compMaxHp;
         this.wins = data.char.combatRecord[0].wins;
         this.loss = data.char.combatRecord[0].losses;
@@ -72,10 +73,10 @@ export class FightComponent implements OnInit {
   startTimer(){
     var tick = 5;
     var number = Observable.timer(2000, 1000);
-    var subscription = number.subscribe(x => {
+    this.subscription = number.subscribe(x => {
       this.timer = tick-x;
       if(x == 5){
-        subscription.unsubscribe();
+        this.subscription.unsubscribe();
         this.shufflingResults = new Array();
         this.gameResult = "";
         this.startShuffling();
@@ -130,6 +131,7 @@ export class FightComponent implements OnInit {
       this.isAliveComp = false;
 
       if(this.compHp <= 0){
+          this.subscription.unsubscribe();
         this.winner = this.name + " wins!!";
         this.wins += 1;
         console.log("winner" + this.winner);
@@ -160,6 +162,7 @@ export class FightComponent implements OnInit {
       //console.log(this.wins);
         return this.winner;
       }if(this.hp <= 0){
+        this.subscription.unsubscribe();
         this.winner = "Computer wins!!";
         this.loss += 1;
         console.log(this.loss);
@@ -180,7 +183,35 @@ export class FightComponent implements OnInit {
       //  console.log(this.loss);
         return this.winner;
       }
-
+      if(this.hp <= 0 && this.compHp <=0){
+        this.subscription.unsubscribe();
+        this.winner = "Draw";
+        var char = {
+          combatStats:true,
+          _id:this.id,
+          wins:this.wins,
+          losses:this.loss
+        };
+        this.authService.updateChar(char).subscribe(data =>{
+          if(data.success){
+            var xp = {
+              xp:15,
+              _id:this.id
+            };
+            this.authService.updateChar(xp).subscribe(data =>{
+              if(data.success){
+                console.log(data);
+              }else{
+                console.log(data);
+              }
+            });
+          }else{
+            console.log(data);
+          }
+        });
+      //  console.log(this.loss);
+        return this.winner;
+      }
       this.getHp();
       this.getCompHp();
   }
