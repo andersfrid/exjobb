@@ -13,6 +13,7 @@ const users = require('./routes/users');
 const server = app.listen(port);
 //const io = require('socket.io').listen(server);
 
+/*
 const mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit : 100,
@@ -21,7 +22,7 @@ var pool = mysql.createPool({
     password: 'GuldFisk1337',
     database: 'ae2332'
 });
-
+*/
 /*
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -114,7 +115,7 @@ app.get('/', (req, res) =>{
 app.get('*', (req, res) =>{
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-
+/*
 exports.handleMySql = function({}, callback){
   pool.getConnection(function(err,connection){
     if (err) {
@@ -136,5 +137,5 @@ exports.handleMySql = function({}, callback){
       console.log(err);
         return;
     });
-  });
-}
+  });*/
+//}

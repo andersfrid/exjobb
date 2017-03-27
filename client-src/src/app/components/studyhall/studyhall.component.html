@@ -4,27 +4,49 @@
     <div class="col-md-6 ">
       <h3>User stats</h3>
       <ul class="list-group" >
-        <li class="list-group-item">Assignments turned in: 10 <br>
-        Classes passed: 3 <br>
-        Attendance 80% </li>
+        <li class="list-group-item">Assignments turned in: 6 <br>
+          Assignments passed: 4 <br>
+        Classes passed: 0 <br>
       </ul>
+      <h4>Your xp:</h4>
       <div class="progress">
         <div #progress class="progress-bar" role="progressbar" [style.width]="xpWidth + '%'">
           {{myXp}}/{{totalXp}} XP
         </div>
       </div>
-      <h4>Achievements</h4>
+    </div>
+  <div class="row top-buffer">
+    <div class="col-md-6 ">
+      <h3>Achievements</h3>
       <p>Check your achievements</p>
       <button [routerLink]="['/achievement']" type="button" class="btn btn-info btn-block">Achievements</button>
       <button [routerLink]="['/dashboard']" type="button" class="btn btn-info btn-block">Back</button>
     </div>
+  </div>
+    <div *ngIf="handedIn" class="col-md-12">
+      <h3>Assignments to correct</h3>
+      <ul *ngFor="let chi of handedIn" class="list-group" >
+        <li *ngIf="!chi.passed" class="list-group-item list-group-item-danger">Course: {{chi.course}}<br>
+        Assignment: {{chi.assignment}}<br>
+        Message: {{chi.msg}}</li>
+      </ul>
+    </div>
 
-    <div *ngIf="mySqlData" class="col-md-6">
+    <div *ngIf="handedIn" class="col-md-12">
+      <h3>Assignments complete</h3>
+      <ul *ngFor="let chi of handedIn" class="list-group" >
+        <li *ngIf="chi.passed" class="list-group-item list-group-item-success">Course: {{chi.course}}<br>
+        Assignment: {{chi.assignment}}<br>
+        Message: {{chi.msg}}<br>
+        Awarded: 20 xp</li>
+      </ul>
+    </div>
+
+    <div *ngIf="notDone" class="col-md-12">
       <h3>Due dates for Assignments</h3>
-      <ul *ngFor="let user of mySqlData" class="list-group" >
-        <li class="list-group-item">Course: {{user.Course_name}}</li>
-        <li class="list-group-item">Assignment: {{user.Assignment_name}}</li>
-        <li class="list-group-item">Data: 19/4</li>
+      <ul *ngFor="let cnd of notDone" class="list-group" >
+        <li class="list-group-item list-group-item-info">Course: {{cnd.course}}<br>
+        Assignment: {{cnd.assignment}}<br>Turn in assignment: {{cnd.date}}</li>
       </ul>
     </div>
   </div>

@@ -8,13 +8,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./studyhall.component.css']
 })
 
-
 export class StudyhallComponent implements OnInit {
   mySqlData:any;
   xpWidth:number;
   totalXp:number;
   myXp:number;
   level:number;
+
+  handedIn = [
+    {course:'Datavetenskap',assignment:'Lab 1', passed:false, handedIn:true, msg:'Need to fix if statment'},
+    {course:'Datavetenskap',assignment:'Lab 2', passed:true, handedIn:true, msg:'Well done'},
+    {course:'OOP',assignment:'Lab 1', passed:true, handedIn:true, msg:'Well done'},
+    {course:'OOP',assignment:'Lab 2', passed:true, handedIn:true, msg:'Well done'},
+    {course:'OOP',assignment:'Lab 3', passed:true, handedIn:true, msg:'Well done'},
+    {course:'OOP',assignment:'Lab 4', passed:false, handedIn:true, msg:'It crashed when i try to run it, fix!'}
+  ];
+
+  notDone = [
+    {course:'Datavetenskap',assignment:'Project report', handedIn:false, date:'1/4'},
+    {course:'Datavetenskap',assignment:'Lab 3', handedIn:false, date:'8/4'},
+    {course:'Datavetenskap',assignment:'Lab 4', handedIn:false, date:'16/4'},
+    {course:'Datavetenskap',assignment:'Text writing', handedIn:false, date:'24/4'},
+    {course:'OOP',assignment:'Project report', handedIn:false, date:'28/4'},
+    {course:'OOP',assignment:'Lab 5', handedIn:false, date:'3/4'},
+    {course:'OOP',assignment:'Lab 6', handedIn:false, date:'8/4'},
+    {course:'OOP',assignment:'Lab 7', handedIn:false, date:'14/4'},
+    {course:'OOP',assignment:'Group assignment', handedIn:false, date:'20/4'}
+  ];
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -40,18 +61,18 @@ export class StudyhallComponent implements OnInit {
       }
     });
     this.calculateXp();
-
+    /*
     this.authService.getStudyHallInfo().subscribe(data => {
       this.mySqlData = data.mySql;
-      /*
+
       for(var i =0; i<this.mySqlData.length; i++){
         console.log(this.mySqlData[i]);
-      }*/
+      }
     },
   err => {
     console.log(err);
     return false;
-  });
+  });*/
   }
   calculateXp(){
     this.xpWidth = this.myXp / this.totalXp * 100;

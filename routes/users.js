@@ -71,7 +71,7 @@ router.post('/create-char', (req, res, next) => {
     charName: req.body.name,
     charImage: req.body.image,
     playerLvl: 1,
-    xp: 0,
+    xp: 80,
     playerTitle: 'newbie',
     combat:[{
       health: 140,
@@ -83,6 +83,7 @@ router.post('/create-char', (req, res, next) => {
     }],
     achievements:[
       { name: "Created character", description:"Created a character", reward:10, collected:false },
+      { name: "Play hard, study harder", description:"Handed in your first assignment", reward:10, collected:true},
       { name: "Baby steps", description: "Took part in your first duel", reward:10, collected:false },
       { name: "They grow up so fast", description: "Fought 15 times", reward:100, collected:false },
       { name: "Cheap shot", description: "Won your first duel", reward:10, collected:false },

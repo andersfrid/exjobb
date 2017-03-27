@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../../services/auth.service';
+import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ export class DashboardComponent implements OnInit {
   private newDmg:number;
   private newHp:number;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
     var user = JSON.parse(this.authService.getUserLocaldata());
@@ -55,6 +56,7 @@ export class DashboardComponent implements OnInit {
       }
       this.authService.updateChar(level).subscribe(data =>{
         if(data.success){
+          this.flashMessage.show('You successfully leveled up one level', {cssClass: 'alert-success', timeout: 3000});
           var combat = {
             combat:true,
             dmg:this.newDmg,

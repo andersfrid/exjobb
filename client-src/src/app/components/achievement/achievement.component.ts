@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-achievement',
@@ -13,7 +14,10 @@ export class AchievementComponent implements OnInit {
   doneAchievements = [];
   bool = [];
 
-  constructor(private authService:AuthService,private router: Router,) { }
+  constructor(private authService:AuthService,
+    private router: Router,
+    private flashMessage: FlashMessagesService
+  ) { }
 
   ngOnInit() {
     var user = this.authService.getUserLocaldata();
@@ -40,7 +44,6 @@ export class AchievementComponent implements OnInit {
       }else{
         this.notDoneAchievements.push(temp);
       }
-
     }
   }
 
@@ -53,6 +56,7 @@ export class AchievementComponent implements OnInit {
     for(var i = 0; i<charAchievements.length; i++){
       if((charAchievements[i].name === 'Created character') && !this.bool[i]){
         this.bool[i] = true;
+
         var upChar = {
 	         "achiev":true,
 	          "_id": char._id,
@@ -60,6 +64,7 @@ export class AchievementComponent implements OnInit {
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
+            this.flashMessage.show('You got a new Achievement', {cssClass: 'alert-success', timeout: 3000});
             var upXP = {
               "xp":10,
               "_id": char._id
@@ -87,6 +92,7 @@ export class AchievementComponent implements OnInit {
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
+            this.flashMessage.show('You got a new Achievement', {cssClass: 'alert-success', timeout: 3000});
             var upXP = {
               "xp":10,
               "_id": char._id
@@ -112,6 +118,7 @@ export class AchievementComponent implements OnInit {
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
+            this.flashMessage.show('You got a new Achievement', {cssClass: 'alert-success', timeout: 3000});
             var upXP = {
               "xp":100,
               "_id": char._id
@@ -138,6 +145,7 @@ export class AchievementComponent implements OnInit {
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
+            this.flashMessage.show('You got a new Achievement', {cssClass: 'alert-success', timeout: 3000});
             var upXP = {
               "xp":10,
               "_id": char._id
@@ -163,6 +171,7 @@ export class AchievementComponent implements OnInit {
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
+            this.flashMessage.show('You got a new Achievement', {cssClass: 'alert-success', timeout: 3000});
             var upXP = {
               "xp":150,
               "_id": char._id
@@ -188,6 +197,7 @@ export class AchievementComponent implements OnInit {
         }
         this.authService.updateChar(upChar).subscribe(data =>{
           if(data.success){
+            this.flashMessage.show('You got a new Achievement', {cssClass: 'alert-success', timeout: 3000});
             var upXP = {
               "xp":1000,
               "_id": char._id
