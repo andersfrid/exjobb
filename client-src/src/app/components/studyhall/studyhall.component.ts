@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class StudyhallComponent implements OnInit {
   mySqlData:any;
   xpWidth:number;
-  totalXp:number = 2000;
+  totalXp:number;
   myXp:number;
   level:number;
   constructor(
