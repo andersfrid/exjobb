@@ -32,6 +32,8 @@ export class FightComponent implements OnInit {
   private timer:number;
   private subscription:any;
   private id:any;
+  private gameStarted:boolean;
+  private isValid = false;
 
   constructor(private authService: AuthService) { }
 
@@ -63,24 +65,38 @@ export class FightComponent implements OnInit {
 		this.gameResult = "";
 		this.startShuffling();
     this.startTimer();
+    this.isValid = true;
 
+    if(!this.gameStarted){
+      this.hp = this.maxHp;
+      this.compHp = this.compMaxHp;
+      this.winner = "";
+      this.gameStarted = true;
+      this.playerMove = "";
+      this.compMove = "";
+    }
 	}
   setMove(val){
     this.onElementSelected(val);
     //this.doStartGame();
   }
+  isValidForm() {
+    return this.isValid;
+}
 
   startTimer(){
-    var tick = 5;
+    var tick = 10;
     var number = Observable.timer(2000, 1000);
     this.subscription = number.subscribe(x => {
       this.timer = tick-x;
-      if(x == 5){
+      if(x == 10){
+        this.establishTheWinner();
         this.subscription.unsubscribe();
         this.shufflingResults = new Array();
         this.gameResult = "";
         this.startShuffling();
         this.startTimer();
+
     }
   });
 }
@@ -91,35 +107,31 @@ export class FightComponent implements OnInit {
 	}
   establishTheWinner() {
     if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "strike")){
-      console.log("Both do 95% damage");
-      console.log(this.hp = (this.hp - 0.95*this.damage));
-      console.log(this.compHp = (this.compHp - 0.95*this.computerDmg));
+      this.hp = (this.hp - 0.95*this.damage);
+      this.compHp = (this.compHp - 0.95*this.computerDmg);
     }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "protect")){
-      console.log("Miss and comp does 35% damage");
-      console.log(this.hp = (this.hp - 0.35*this.damage));
+      this.hp = (this.hp - 0.35*this.damage);
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "strike")){
-      console.log("Comp does 20% damage");
-      console.log(this.hp = (this.hp - 0.20*this.computerDmg));
+      this.hp = (this.hp - 0.20*this.computerDmg);
     }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "protect")){
-      console.log("Player does 20% damage");
-      console.log(this.compHp = (this.compHp - 0.20*this.damage));
+      this.compHp = (this.compHp - 0.20*this.damage);
     }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "strike")){
-      console.log("Player does 150% damage and comp does 95% damage");
-      console.log(this.compHp = (this.compHp - 1.5*this.damage));
-      console.log(this.hp = (this.hp - 0.95*this.damage));
+      this.compHp = (this.compHp - 1.5*this.damage);
+      this.hp = (this.hp - 0.95*this.damage);
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "haymaker")){
-      console.log("Player evades and retaliates for 35% damage");
-      console.log(this.compHp = (this.compHp - 0.35*this.damage));
+      this.compHp = (this.compHp - 0.35*this.damage);
     }if((this.shufflingResults[0] == "strike") && (this.computerResult[0] == "haymaker")){
-      console.log("Player does 95% damage and computer does 150%");
-      console.log(this.hp = (this.hp - 1.5*this.damage));
-      console.log(this.compHp = (this.compHp -0.95*this.damage));
+      this.hp = (this.hp - 1.5*this.damage);
+      this.compHp = (this.compHp -0.95*this.damage);
     }if((this.shufflingResults[0] == "haymaker") && (this.computerResult[0] == "haymaker")){
-      console.log("Both does 150% damage");
-      console.log(this.hp = (this.hp - 1.5*this.damage));
-      console.log(this.compHp = (this.compHp - 1.5*this.damage));
+      this.hp = (this.hp - 1.5*this.damage);
+      this.compHp = (this.compHp - 1.5*this.damage);
     }if((this.shufflingResults[0] == "protect") && (this.computerResult[0] == "protect")){
-      console.log("Nothing happens");
+
+    }if((this.shufflingResults[0] == undefined) && (this.computerResult[0] == "strike") || (this.computerResult[0] == "protect")||(this.computerResult[0] == "haymaker")){
+    //  console.log(this.shufflingResults[0]);
+      console.log("NO MOVE");
+      this.hp = (this.hp - 0.10*this.damage);
     }
 
     if(this.isAlivePlayer == true && this.isAliveComp == true ){
@@ -134,7 +146,8 @@ export class FightComponent implements OnInit {
           this.subscription.unsubscribe();
         this.winner = this.name + " wins!!";
         this.wins += 1;
-        console.log("winner" + this.winner);
+        this.gameStarted = false;
+        this.isValid = false;
         var char = {
           combatStats:true,
           _id:this.id,
@@ -161,12 +174,13 @@ export class FightComponent implements OnInit {
 
       //console.log(this.wins);
         return this.winner;
+
       }if(this.hp <= 0){
         this.subscription.unsubscribe();
         this.winner = "Computer wins!!";
         this.loss += 1;
-        console.log(this.loss);
-        console.log("winner" + this.winner);
+        this.gameStarted = false;
+        this.isValid = false;
         var char = {
           combatStats:true,
           _id:this.id,
