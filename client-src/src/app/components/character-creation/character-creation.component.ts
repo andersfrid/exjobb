@@ -14,10 +14,10 @@ export class CharacterCreationComponent implements OnInit {
   imageIndex:number;
 
   private imgPaths = [
-    {src:'http://webshare.mah.se/ae3529/img1.png', alt:'img1'},
-    {src:'http://webshare.mah.se/ae3529/img2.png', alt:'img2'},
-    {src:'http://webshare.mah.se/ae3529/img3.png', alt:'img3'},
-    {src:'http://webshare.mah.se/ae3529/img4.png', alt:'img4'}
+    {src:'https://webshare.mah.se/ae3529/img1.png', alt:'img1'},
+    {src:'https://webshare.mah.se/ae3529/img2.png', alt:'img2'},
+    {src:'https://webshare.mah.se/ae3529/img3.png', alt:'img3'},
+    {src:'https://webshare.mah.se/ae3529/img4.png', alt:'img4'}
   ];
 
   private img:Object;
