@@ -10,7 +10,7 @@
             </button>
             <a class="navbar-brand" href="#">GAMIFIED</a>
           </div>
-          <div id="navbar" class="navbar-collapse collapse-in" area-expanded="true" style>
+          <div id="navbar" class="navbar-collapse collapse" area-expanded="true" style>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/dashboard']">Dashboard</a></li>
                 <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/register']">Register</a></li>

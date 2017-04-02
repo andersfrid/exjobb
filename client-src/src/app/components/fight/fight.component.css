@@ -1,13 +1,16 @@
 /* Small devices (tablets, 768px and up) */
 @media (max-width: 767px) {
+  .container{
+    width: 75%;
+  }
   #char{
     width: 40%;
-    padding: 5%;
+    padding: 2%;
     float: left;
   }
   #charComp{
     width: 40%;
-    padding: 5%;
+    padding: 2%;
     float: right;
   }
   .buttons{
