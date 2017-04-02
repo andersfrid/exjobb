@@ -11,7 +11,7 @@ const app = express();
 const users = require('./routes/users');
 
 const server = app.listen(port);
-//const io = require('socket.io').listen(server);
+const io = require('socket.io').listen(server);
 
 /*
 const mysql = require('mysql');
@@ -23,15 +23,52 @@ var pool = mysql.createPool({
     database: 'ae2332'
 });
 */
-/*
-io.on('connection', function(socket){
+
+let usernames = [];
+let rooms = ['room1', 'room2', 'room3'];
+let nbrOfUsers = 0;
+
+io.sockets.on('connection', function(socket){
   console.log('a user connected');
+  nbrOfUsers ++;
+
+  socket.on('addPlayer', function(user){
+    if(nbrOfUsers < 3){
+      socket.username = user;//stors username in socket
+      socket.room = 'room1';
+      usernames.push(socket.username);
+      socket.join('room1'); //client joins room1
+      socket.emit('connectedToRoom', 'you have connected to room1'); //Send to client they have connected
+      if(nbrOfUsers == 2){
+        io.sockets.in(socket.room).emit('startGame', usernames);
+      }
+    }else{
+      socket.emit('roomFull', 'room is full, try agin later');
+    }
+  });
+
+  socket.on('playerMove', function(move){
+    playerMove = {
+      user:socket.username,
+      move:move
+    }
+    console.log(playerMove);
+    console.log(socket.username);
+
+    io.sockets.in('room1').emit('doMoves', playerMove);
+  });
+
+
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
+    nbrOfUsers --;
+		usernames.splice(socket.usernames, 1);
+		socket.leave(socket.room);
   });
 });
 
-*/
+
 /*
 var usernames = {};
 

@@ -1,0 +1,39 @@
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 767px) {
+  #char{
+    width: 40%;
+    padding: 5%;
+    float: left;
+  }
+  #charComp{
+    width: 40%;
+    padding: 5%;
+    float: right;
+  }
+
+}
+
+.container{
+  background-image: url("https://webshare.mah.se/ae3529/winter.jpg");
+}
+#char{
+  width: 30%;
+  margin: auto;
+  display: block;
+  padding-top: 2%;
+}
+#charComp{
+  width: 30%;
+  margin:auto;
+  display: block;
+  padding-top: 2%;
+}
+.name{
+  text-align: center;
+}
+#cMove{
+  text-align: center;
+}
+#pMove{
+  text-align: center;
+}

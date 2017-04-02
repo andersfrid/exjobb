@@ -19,10 +19,12 @@ import { AchievementComponent } from './components/achievement/achievement.compo
 import { ValidateService} from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService} from './services/auth.service';
+import { GamestuffService } from './services/gamestuff.service';
 import { AuthGuard } from './guards/auth.guard';
 import { FightComponent } from './components/fight/fight.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { PlayervsplayerComponent } from './components/playervsplayer/playervsplayer.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
   {path:'achievement', component: AchievementComponent, canActivate:[AuthGuard]},
   {path:'fight', component: FightComponent, canActivate:[AuthGuard]},
   {path:'faq', component: FaqComponent},
-  {path:'settings', component:SettingsComponent, canActivate:[AuthGuard]}
+  {path:'settings', component:SettingsComponent, canActivate:[AuthGuard]},
+  {path:'vs', component:PlayervsplayerComponent}
 ]
 
 @NgModule({
@@ -53,7 +56,8 @@ const appRoutes: Routes = [
     AchievementComponent,
     FightComponent,
     FaqComponent,
-    SettingsComponent
+    SettingsComponent,
+    PlayervsplayerComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, GamestuffService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
