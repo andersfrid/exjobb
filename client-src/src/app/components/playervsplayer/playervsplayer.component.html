@@ -8,7 +8,7 @@
   </div>
 
   <div class="row" id="vs">
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-6 col-sm-6 col-md-6">
       <p class="name">{{charName}}</p>
         <p id= "pMove"><strong>{{p1Action}}</strong></p>
     <div class="progressPlayer">
@@ -19,7 +19,7 @@
     </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-6 col-sm-6 col-md-6">
       <p class="name">{{char2Name}}</p>
         <p id= "cMove"><strong>{{p2Action}}</strong></p>
         <div class="progressComputer">
@@ -32,30 +32,28 @@
   </div>
 
   <div class="row" id="images">
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-6 col-sm-6 col-md-6">
       <img id="char" src="{{player1Image}}" alt="player1Image">
-      <div *ngIf="!disableMove" class="row" id="buttons">
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <button type="button" (click)="playerAction(1)"><img src="https://webshare.mah.se/ae3529/strike_40x40.png"></button>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          <button type="button" (click)="playerAction(2)"><img src="https://webshare.mah.se/ae3529/protect_40x40.png"></button>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
-          <button type="button" (click)="playerAction(3)"><img src="https://webshare.mah.se/ae3529/haymaker_40x40.png"></button>
-        </div>
-      </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="col-xs-6 col-sm-6 col-md-6">
       <img id="charComp" src="{{player2Image}}" alt="player2Image">
+    </div>
+  </div>
+
+  <div *ngIf="!disableMove" class="row" id="buttons">
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <button type="button" (click)="playerAction(1)"><img src="https://webshare.mah.se/ae3529/strike_40x40.png"></button>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+      <button type="button" (click)="playerAction(2)"><img src="https://webshare.mah.se/ae3529/protect_40x40.png"></button>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+      <button type="button" (click)="playerAction(3)"><img src="https://webshare.mah.se/ae3529/haymaker_40x40.png"></button>
     </div>
   </div>
 
   <div *ngIf="gameOver" class="row" id="gameOver">
       <div class="col-xs-12 col-sm-6 col-md-6">
-      <button [routerLink]="['/vs']" type="button" class="btn btn-info btn-block">Challenge new oponent</button>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
       <button [routerLink]="['/arena']" type="button" class="btn btn-info btn-block">Back to arena</button>
     </div>
   </div>

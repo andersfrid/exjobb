@@ -147,15 +147,18 @@ export class PlayervsplayerComponent implements OnInit {
     if(this.player1Hp <= 0 && this.player2Hp <= 0){//draw
       this.winner = 'DRAW';
       this.gameOver = true;
+      this.disableMove = true;
       this.updateGameStats(3);
     }else if (this.player1Hp <= 0){//player 2 wins
       this.winner = this.char2Name;
       this.gameOver = true;
-        this.updateGameStats(2);
+      this.disableMove = true;
+      this.updateGameStats(2);
     }else if (this.player2Hp <= 0){//player 1 wins
       this.winner = this.charName;
       this.gameOver = true;
-        this.updateGameStats(1);
+      this.disableMove = true;
+      this.updateGameStats(1);
     }
   }
 
