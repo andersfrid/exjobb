@@ -1,7 +1,10 @@
 .top-buffer {
   margin-top:20px;
 }
+#friends{
+  width: 35%;
 
+}
 @media(max-width:767px){
   #arenaTitle{
     margin-left: 20%;
@@ -40,6 +43,10 @@
     width: 30%;
     margin: auto;
     padding-bottom: 5%;
+  }
+  #friends{
+    float: left;
+    margin: auto;
   }
 }
 

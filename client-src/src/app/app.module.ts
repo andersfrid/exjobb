@@ -25,6 +25,7 @@ import { FightComponent } from './components/fight/fight.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PlayervsplayerComponent } from './components/playervsplayer/playervsplayer.component';
+import { OnlineListComponent } from './components/onlinelist/online-list.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   {path:'fight', component: FightComponent, canActivate:[AuthGuard]},
   {path:'faq', component: FaqComponent},
   {path:'settings', component:SettingsComponent, canActivate:[AuthGuard]},
-  {path:'vs', component:PlayervsplayerComponent}
+  {path:'vs', component:PlayervsplayerComponent},
+  {path:'online-list', component:OnlineListComponent}
 ]
 
 @NgModule({
@@ -57,7 +59,8 @@ const appRoutes: Routes = [
     FightComponent,
     FaqComponent,
     SettingsComponent,
-    PlayervsplayerComponent
+    PlayervsplayerComponent,
+    OnlineListComponent
   ],
   imports: [
     BrowserModule,

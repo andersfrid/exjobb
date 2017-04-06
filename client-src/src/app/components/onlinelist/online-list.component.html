@@ -1,0 +1,17 @@
+
+  <h2 class="page-header">Online users</h2>
+  <div *ngIf="characters" class="col-md-12">
+    <div *ngFor="let character of characters" class="media">
+    <div class="media-left">
+        <a href="#">
+            <img src={{character.charImage}} class="media-object" alt="Sample Image" width="50" height="90">
+        </a>
+    </div>
+    <div class="media-body">
+        <li class="list-group-item list-group-item-success"><strong>Username:  {{character.name}}</strong>
+          <br> Character:  {{character.charname}}
+          <br> Level:  {{character.playerLvl}}
+        </li>
+    </div>
+  </div>
+</div>
