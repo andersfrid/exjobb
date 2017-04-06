@@ -63,45 +63,42 @@ export class PlayervsplayerComponent implements OnInit {
         this.player2Image = this.characters[randomOponent].charImage;
         this.char2Name = this.characters[randomOponent].charname;
         this.player2Dmg = this.characters[randomOponent].damage;
-      }else{
-
+        this.startTimer();
       }
     });
-    this.startTimer();
-
   }
 
   startTimer(){
     if(!this.gameOver){
-    console.log('starting timer');
-    var tick = 10;
-    var number = Observable.timer(2000, 1000);
-    this.disableMove = false;
-    this.subscription = number.subscribe(x => {
-      this.timer = tick-x;
-      if(x == 10){
-        this.subscription.unsubscribe();
-        this.player2Move = Math.floor(Math.random() * 3) + 1;
-        if(this.player2Move == 1){
-          this.p2Action = 'Strike';
-        }else if(this.player2Move == 2){
-          this.p2Action = 'Protect';
-        }else{
-          this.p2Action = 'Haymaker';
+      console.log('starting timer');
+      var tick = 10;
+      var number = Observable.timer(2000, 1000);
+      this.disableMove = false;
+      this.subscription = number.subscribe(x => {
+        this.timer = tick-x;
+        if(x == 10){
+          this.subscription.unsubscribe();
+          this.player2Move = Math.floor(Math.random() * 3) + 1;
+          if(this.player2Move == 1){
+            this.p2Action = 'Strike';
+          }else if(this.player2Move == 2){
+            this.p2Action = 'Protect';
+          }else{
+            this.p2Action = 'Haymaker';
+          }
+          if(this.player1Move == 1){
+            this.p1Action = 'Strike';
+          }else if(this.player1Move == 2){
+            this.p1Action = 'Protect';
+          }else if(this.player1Move == 3){
+            this.p1Action = 'Haymaker';
+          }else{
+            this.player1Move = 0;
+          }
+          this.checkMoves(this.player1Move, this.player2Move);
+          //this.startTimer(); start somewhere else
         }
-        if(this.player1Move == 1){
-          this.p1Action = 'Strike';
-        }else if(this.player1Move == 2){
-          this.p1Action = 'Protect';
-        }else if(this.player1Move == 3){
-          this.p1Action = 'Haymaker';
-        }else{
-          this.player1Move = 0;
-        }
-        this.checkMoves(this.player1Move, this.player2Move);
-        //this.startTimer(); start somewhere else
-      }
-    });
+      });
     }
   }
 
