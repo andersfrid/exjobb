@@ -23,7 +23,7 @@ var pool = mysql.createPool({
     database: 'ae2332'
 });
 */
-
+/*
 let usernames = [];
 let rooms = ['room1', 'room2', 'room3'];
 let nbrOfUsers = 0;
@@ -67,7 +67,7 @@ io.sockets.on('connection', function(socket){
 		socket.leave(socket.room);
   });
 });
-
+*/
 
 /*
 var usernames = {};
