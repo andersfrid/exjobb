@@ -68,10 +68,12 @@ export class PlayervsplayerComponent implements OnInit {
       }
     });
     this.startTimer();
+
   }
 
   startTimer(){
     if(!this.gameOver){
+    console.log('starting timer');
     var tick = 10;
     var number = Observable.timer(2000, 1000);
     this.disableMove = false;
