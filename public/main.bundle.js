@@ -1518,15 +1518,14 @@ var PlayervsplayerComponent = (function () {
                 _this.player2Image = _this.characters[randomOponent].charImage;
                 _this.char2Name = _this.characters[randomOponent].charname;
                 _this.player2Dmg = _this.characters[randomOponent].damage;
-            }
-            else {
+                _this.startTimer();
             }
         });
-        //this.startTimer();
     };
     PlayervsplayerComponent.prototype.startTimer = function () {
         var _this = this;
         if (!this.gameOver) {
+            console.log('starting timer');
             var tick = 10;
             var number = __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["Observable"].timer(2000, 1000);
             this.disableMove = false;
@@ -1605,7 +1604,7 @@ var PlayervsplayerComponent = (function () {
             this.player1Hp = (this.player1Hp - 1.5 * this.player2Dmg);
         }
         this.checkGameOver();
-        //this.startTimer();
+        this.startTimer();
     };
     PlayervsplayerComponent.prototype.checkGameOver = function () {
         if (this.player1Hp <= 0 && this.player2Hp <= 0) {
@@ -2243,7 +2242,7 @@ module.exports = "<h2 class=\"page-header\">Register your character</h2>\n<p>Thi
 /***/ 749:
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Homepage</h2>\n<div class=\"row top-buffer\">\n  <div id=\"arena\" class=\"col-xs-12 col-sm-6 col-md-6 \">\n    <h3 id=\"arenaTitle\">Arena</h3>\n    <a [routerLink]=\"['/arena']\"><img id=\"arenaImg\" src=\"http://webshare.mah.se/ae3529/arena.png\" alt=\"arena\"></a>\n  </div>\n  <h3 id=\"studyTitle\">Studyhall</h3>\n  <div  class=\"col-xs-12 col-sm-6 col-md-6 \">\n    <a [routerLink]=\"['/studyhall']\"><img id=\"studyhallImg\" src=\"http://webshare.mah.se/ae3529/studyhall.png\" alt=\"arena\"></a>\n\n  </div>\n</div>\n<div class=\"row top-buffer\">\n  <div id=\"profile\" class=\"col-xs-12 col-md-12\" >\n    <h3 id=\"char\">{{name}}</h3>\n      <p id=\"lvl\">Lvl: {{level}}</p>\n    <a [routerLink]=\"['/profile']\"><img id=\"profileImg\" src=\"{{image}}\" alt=\"img1\"></a>\n\n    <div class=\"hpbar\">\n      <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\"\n      aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:100%\">\n      {{hp}}/{{hp}} HP\n      </div>\n    </div>\n    <div id=\"friends\">\n    <h3> 5 </h3>\n      <a [routerLink]=\"['/online-list']\"><img id= \"friends\" src=\"http://webshare.mah.se/ae3529/friends.png\" alt=\"friends\"></a>\n  </div>\n  </div>\n\n</div>\n"
+module.exports = "<h2 class=\"page-header\">Homepage</h2>\n<div class=\"row top-buffer\">\n  <div id=\"arena\" class=\"col-xs-12 col-sm-6 col-md-6 \">\n    <h3 id=\"arenaTitle\">Arena</h3>\n    <a [routerLink]=\"['/arena']\"><img id=\"arenaImg\" src=\"https://webshare.mah.se/ae3529/arena.png\" alt=\"arena\"></a>\n  </div>\n  <h3 id=\"studyTitle\">Studyhall</h3>\n  <div  class=\"col-xs-12 col-sm-6 col-md-6 \">\n    <a [routerLink]=\"['/studyhall']\"><img id=\"studyhallImg\" src=\"https://webshare.mah.se/ae3529/studyhall.png\" alt=\"arena\"></a>\n\n  </div>\n</div>\n<div class=\"row top-buffer\">\n  <div id=\"profile\" class=\"col-xs-12 col-md-12\" >\n    <h3 id=\"char\">{{name}}</h3>\n      <p id=\"lvl\">Lvl: {{level}}</p>\n    <a [routerLink]=\"['/profile']\"><img id=\"profileImg\" src=\"{{image}}\" alt=\"img1\"></a>\n\n    <div class=\"hpbar\">\n      <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\"\n      aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:100%\">\n      {{hp}}/{{hp}} HP\n      </div>\n    </div>\n    <div id=\"friends\">\n    <h3> 5 </h3>\n      <a [routerLink]=\"['/online-list']\"><img id= \"friends\" src=\"https://webshare.mah.se/ae3529/friends.png\" alt=\"friends\"></a>\n  </div>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -2257,7 +2256,7 @@ module.exports = "<h2 class=\"page-header\">F.A.Q</h2>\n<div class=\"col-md-12\"
 /***/ 751:
 /***/ (function(module, exports) {
 
-module.exports = "<div class= \"container\">\n\n  <div *ngIf=\"gameOver\" class=\"row\" id=\"gameOver\">\n    <div class=\"col-xs-12 col-sm-12 col-md-12\">\n      <button [routerLink]=\"['/arena']\" type=\"button\" class=\"btn btn-info btn-block\">Back to arena</button>\n    </div>\n  </div>\n\n  <div class =\"row\">\n    <div class=\"col-xs-12 col-sm-12 col-md-12 text-center\">\n      <h3>Fight Mode</h3>\n      <h3>{{winner}}</h3>\n      <button [disabled]=\"isValidForm()\" (click)=\"doStartGame('playerOne', 'computer')\">Start Game</button>\n      <h3>{{timer}}</h3>\n    </div>\n  </div>\n\n<div class=\"row\" id=\"vs\">\n  <div class=\"col-xs-12 col-sm-6 col-md-6\">\n    <p class=\"name\">{{name}}</p>\n    <p id= \"pMove\"><strong>{{playerMove}}</strong></p>\n    <div class=\"progress\">\n      <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"0\"\n          aria-valuemin=\"0\" aria-valuemax=\"100\"  [style.width]=\"(hp/maxHp)*100 + '%'\">\n          {{hp}}/{{maxHp}} HP\n      </div>\n    </div>\n    <img id=\"char\" src=\"{{img}}\" alt=\"img1\">\n    <div class=\"btn-group btn-group-justified\" role=\"group\" id=\"buttons\">\n      <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"setMove('strike')\"><img src=\"https://webshare.mah.se/ae3529/strike_40x40.png\"></button>\n        </div>\n      <div class=\"btn-group\" role=\"group\">\n          <button type=\"button\" class=\"btn btn-default\" (click)=\"setMove('protect')\"><img src=\"https://webshare.mah.se/ae3529/protect_40x40.png\"></button>\n      </div>\n      <div class=\"btn-group\" role=\"group\">\n          <button type=\"button\" class=\"btn btn-default\" (click)=\"setMove('haymaker')\"><img src=\"https://webshare.mah.se/ae3529/haymaker_40x40.png\"></button>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"col-xs-12 col-sm-6 col-md-6\">\n    <p class=\"name\">Boss</p>\n    <p id= \"cMove\"><strong>{{compMove}}</strong></p>\n    <div class=\"progress\">\n      <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"0\"\n        aria-valuemin=\"0\" aria-valuemax=\"100\" [style.width]=\"(compHp/compMaxHp)*100 + '%'\">\n        {{compHp}}/{{compMaxHp}} HP\n      </div>\n    </div>\n    <img id=\"charComp\" src=\"http://webshare.mah.se/ae3529/boss.png\" alt=\"boss\">\n  </div>\n</div>\n</div>\n"
+module.exports = "<div class= \"container\">\n\n  <div *ngIf=\"gameOver\" class=\"row\" id=\"gameOver\">\n    <div class=\"col-xs-12 col-sm-12 col-md-12\">\n      <button [routerLink]=\"['/arena']\" type=\"button\" class=\"btn btn-info btn-block\">Back to arena</button>\n    </div>\n  </div>\n\n  <div class =\"row\">\n    <div class=\"col-xs-12 col-sm-12 col-md-12 text-center\">\n      <h3>Fight Mode</h3>\n      <h3>{{winner}}</h3>\n      <button [disabled]=\"isValidForm()\" (click)=\"doStartGame('playerOne', 'computer')\">Start Game</button>\n      <h3>{{timer}}</h3>\n    </div>\n  </div>\n\n<div class=\"row\" id=\"vs\">\n  <div class=\"col-xs-12 col-sm-6 col-md-6\">\n    <p class=\"name\">{{name}}</p>\n    <p id= \"pMove\"><strong>{{playerMove}}</strong></p>\n    <div class=\"progress\">\n      <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"0\"\n          aria-valuemin=\"0\" aria-valuemax=\"100\"  [style.width]=\"(hp/maxHp)*100 + '%'\">\n          {{hp}}/{{maxHp}} HP\n      </div>\n    </div>\n    <img id=\"char\" src=\"{{img}}\" alt=\"img1\">\n    <div class=\"btn-group btn-group-justified\" role=\"group\" id=\"buttons\">\n      <div class=\"btn-group\" role=\"group\">\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"setMove('strike')\"><img src=\"https://webshare.mah.se/ae3529/strike_40x40.png\"></button>\n        </div>\n      <div class=\"btn-group\" role=\"group\">\n          <button type=\"button\" class=\"btn btn-default\" (click)=\"setMove('protect')\"><img src=\"https://webshare.mah.se/ae3529/protect_40x40.png\"></button>\n      </div>\n      <div class=\"btn-group\" role=\"group\">\n          <button type=\"button\" class=\"btn btn-default\" (click)=\"setMove('haymaker')\"><img src=\"https://webshare.mah.se/ae3529/haymaker_40x40.png\"></button>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"col-xs-12 col-sm-6 col-md-6\">\n    <p class=\"name\">Boss</p>\n    <p id= \"cMove\"><strong>{{compMove}}</strong></p>\n    <div class=\"progress\">\n      <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"0\"\n        aria-valuemin=\"0\" aria-valuemax=\"100\" [style.width]=\"(compHp/compMaxHp)*100 + '%'\">\n        {{compHp}}/{{compMaxHp}} HP\n      </div>\n    </div>\n    <img id=\"charComp\" src=\"https://webshare.mah.se/ae3529/boss.png\" alt=\"boss\">\n  </div>\n</div>\n</div>\n"
 
 /***/ }),
 
