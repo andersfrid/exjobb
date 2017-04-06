@@ -39,7 +39,12 @@
 #pMove{
   text-align: center;
 }
-#buttons{
-  background-color: black;
-  align-self: auto;
+
+
+.btn-group{
+  padding: 2%;
+}
+
+#gameOver{
+  padding-top: 2%;
 }

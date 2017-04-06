@@ -34,6 +34,7 @@ export class FightComponent implements OnInit {
   private id:any;
   private gameStarted:boolean;
   private isValid = false;
+  private gameOver = false;
 
   constructor(private authService: AuthService) { }
 
@@ -130,7 +131,6 @@ export class FightComponent implements OnInit {
 
     }if((this.shufflingResults[0] == undefined) && (this.computerResult[0] == "strike") || (this.computerResult[0] == "protect")||(this.computerResult[0] == "haymaker")){
     //  console.log(this.shufflingResults[0]);
-      console.log("NO MOVE");
       this.hp = (this.hp - 0.10*this.damage);
     }
 
@@ -143,11 +143,12 @@ export class FightComponent implements OnInit {
       this.isAliveComp = false;
 
       if(this.compHp <= 0){
-          this.subscription.unsubscribe();
+        this.subscription.unsubscribe();
         this.winner = this.name + " wins!!";
         this.wins += 1;
         this.gameStarted = false;
         this.isValid = false;
+        this.gameOver = true;
         var char = {
           combatStats:true,
           _id:this.id,
@@ -177,10 +178,11 @@ export class FightComponent implements OnInit {
 
       }if(this.hp <= 0){
         this.subscription.unsubscribe();
-        this.winner = "Computer wins!!";
+        this.winner = "Boss wins!!";
         this.loss += 1;
         this.gameStarted = false;
         this.isValid = false;
+          this.gameOver = true;
         var char = {
           combatStats:true,
           _id:this.id,
@@ -200,6 +202,7 @@ export class FightComponent implements OnInit {
       if(this.hp <= 0 && this.compHp <=0){
         this.subscription.unsubscribe();
         this.winner = "Draw";
+        this.gameOver = true;
         var char = {
           combatStats:true,
           _id:this.id,

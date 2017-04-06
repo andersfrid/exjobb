@@ -47,7 +47,7 @@ export class PlayervsplayerComponent implements OnInit {
       if(data.success){
         this.player1Hp = data.char.combat[0].health;
         this.player1Image = data.char.charImage;
-        this.player1Hp = 5;
+        //this.player1Hp = 5;
         this.charName = data.char.charName;
         this.player1Dmg = data.char.combat[0].damage;
         this.player1MaxHp = this.player1Hp;
@@ -59,7 +59,7 @@ export class PlayervsplayerComponent implements OnInit {
         console.log(randomOponent);
         this.player2Hp = this.characters[randomOponent].health;
         this.player2MaxHp = this.player2Hp;
-        this.player2Hp = 5;
+        //this.player2Hp = 5;
         this.player2Image = this.characters[randomOponent].charImage;
         this.char2Name = this.characters[randomOponent].charname;
         this.player2Dmg = this.characters[randomOponent].damage;
@@ -67,7 +67,7 @@ export class PlayervsplayerComponent implements OnInit {
 
       }
     });
-    this.startTimer();
+    //this.startTimer();
   }
 
   startTimer(){
@@ -140,7 +140,7 @@ export class PlayervsplayerComponent implements OnInit {
       }
 
       this.checkGameOver();
-      this.startTimer();
+      //this.startTimer();
   }
 
   checkGameOver(){
