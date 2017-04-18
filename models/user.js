@@ -27,6 +27,10 @@ const UserSchema = mongoose.Schema({
       type: String,
       required: true
     },
+    wAssessed:{
+      type:Boolean,
+      required:true
+    },
     passed:{
       type: Boolean,
       required: true
@@ -60,6 +64,10 @@ module.exports.getUsersByUsername = function(username, callback){
 
 module.exports.updateUser = function(yass, callback){
   User.update({username: yass.username},{$set:{character: yass.id}}, callback);
+}
+
+module.exports.updateAssignment = function(ass, callback){
+  User.update({_id:ass._id,"assignments":{$elemMatch:{_id:ass.assignmentId}}},{$set:{"assignments.$.wAssessed":true,"assignments.$.handedIn":true}}, callback);
 }
 
 module.exports.addUser = function(newUser, callback){
