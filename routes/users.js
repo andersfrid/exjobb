@@ -7,6 +7,7 @@ const config = require('../config/database');
 const Character = require('../models/character');
 const Achievment = require('../models/achievments');
 const Levels = require('../models/levels');
+
 const App = require('../app');
 
 //Register
@@ -15,7 +16,24 @@ router.post('/register', (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    assignments:[
+      { course:"Datavetenskap", assignment:"Lab 1", passed:false, handedIn:true, date:"-", msg:"Need to fix if statement" },
+      {course:"Datavetenskap", assignment:"Lab 2", passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 1", passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 2", passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 3", passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 4", passed:false, handedIn:true, date:"-", msg:"It crashed when i try to run it, fix!"},
+      {course:"Datavetenskap", assignment:'Project report', passed:false, handedIn:false, date:'1/4'},
+      {course:"Datavetenskap", assignment:'Lab 3', passed:false, handedIn:false, date:'8/4'},
+      {course:"Datavetenskap", assignment:'Lab 4', passed:false, handedIn:false, date:'16/4'},
+      {course:"Datavetenskap", assignment:'Text writing', passed:false, handedIn:false, date:'24/4'},
+      {course:"OOP", assignment:'Project report', passed:false, handedIn:false, date:'28/4'},
+      {course:"OOP", assignment:'Lab 5', passed:false, handedIn:false, date:'3/4'},
+      {course:"OOP", assignment:'Lab 6', passed:false, handedIn:false, date:'8/4'},
+      {course:"OOP", assignment:'Lab 7', passed:false, handedIn:false, date:'14/4'},
+      {course:"OOP", assignment:'Group assignment', passed:false, handedIn:false, date:'20/4'}
+    ]
   });
 
   User.addUser(newUser, (err, user) => {

@@ -18,6 +18,30 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  assignments:[{
+    course:{
+      type: String,
+      required: true
+    },
+    assignment:{
+      type: String,
+      required: true
+    },
+    passed:{
+      type: Boolean,
+      required: true
+    },
+    handedIn:{
+      type: Boolean,
+      required: true
+    },
+    date:{
+      type:String,
+    },
+    msg:{
+      type:String
+    }
+  }],
   character: {
     type: String
   }

@@ -23,12 +23,23 @@
       <button [routerLink]="['/dashboard']" type="button" class="btn btn-info btn-block">Back</button>
     </div>
   </div>
+
+  <div *ngIf="notDone" class="col-md-12">
+    <h3>Due dates for Assignments</h3>
+    <ul *ngFor="let cnd of notDone" class="list-group" >
+      <li class="list-group-item list-group-item-info">Course: {{cnd.course}}<br>
+      Assignment: {{cnd.assignment}}<br>Turn in assignment: {{cnd.date}} <br>
+      <strong>Passing assignment will award: 20 xp  </strong></li>
+    </ul>
+  </div>
+
     <div *ngIf="handedIn" class="col-md-12">
       <h3>Assignments to correct</h3>
       <ul *ngFor="let chi of handedIn" class="list-group" >
         <li *ngIf="!chi.passed" class="list-group-item list-group-item-danger">Course: {{chi.course}}<br>
         Assignment: {{chi.assignment}}<br>
-        Message: {{chi.msg}}</li>
+        Message: {{chi.msg}}<br>
+        <strong>Passing assignment will award: 20 xp  </strong></li>
       </ul>
     </div>
 
@@ -42,12 +53,5 @@
       </ul>
     </div>
 
-    <div *ngIf="notDone" class="col-md-12">
-      <h3>Due dates for Assignments</h3>
-      <ul *ngFor="let cnd of notDone" class="list-group" >
-        <li class="list-group-item list-group-item-info">Course: {{cnd.course}}<br>
-        Assignment: {{cnd.assignment}}<br>Turn in assignment: {{cnd.date}}</li>
-      </ul>
-    </div>
   </div>
 </div>

@@ -16,12 +16,12 @@ export class StudyhallComponent implements OnInit {
   level:number;
 
   handedIn = [
-    {course:'Datavetenskap',assignment:'Lab 1', passed:false, handedIn:true, msg:'Need to fix if statment'},
+    {course:'Datavetenskap',assignment:'Lab 1', passed:false, handedIn:true, date:'', msg:'Need to fix if statment'},
     {course:'Datavetenskap',assignment:'Lab 2', passed:true, handedIn:true, msg:'Well done'},
     {course:'OOP',assignment:'Lab 1', passed:true, handedIn:true, msg:'Well done'},
     {course:'OOP',assignment:'Lab 2', passed:true, handedIn:true, msg:'Well done'},
     {course:'OOP',assignment:'Lab 3', passed:true, handedIn:true, msg:'Well done'},
-    {course:'OOP',assignment:'Lab 4', passed:false, handedIn:true, msg:'It crashed when i try to run it, fix!'}
+    {course:'OOP',assignment:'Lab 4', passed:false, handedIn:true, date:'', msg:'It crashed when i try to run it, fix!'}
   ];
 
   notDone = [
@@ -61,18 +61,7 @@ export class StudyhallComponent implements OnInit {
       }
     });
     this.calculateXp();
-    /*
-    this.authService.getStudyHallInfo().subscribe(data => {
-      this.mySqlData = data.mySql;
-
-      for(var i =0; i<this.mySqlData.length; i++){
-        console.log(this.mySqlData[i]);
-      }
-    },
-  err => {
-    console.log(err);
-    return false;
-  });*/
+  
   }
   calculateXp(){
     this.xpWidth = this.myXp / this.totalXp * 100;
