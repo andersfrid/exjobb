@@ -44,7 +44,6 @@ export class ArenaComponent implements OnInit {
 
     this.authService.getLevels().subscribe(data =>{
       if(data.success){
-        console.log(data.level[this.level]);
         this.totalXp = data.level[this.level].xp;
       }
     });

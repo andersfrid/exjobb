@@ -66,6 +66,10 @@ export class PlayervsplayerComponent implements OnInit {
         this.startTimer();
       }
     });
+<<<<<<< HEAD
+=======
+    this.startTimer();
+>>>>>>> 725bedc7fb4f92ba15ec55aab22ae1bba78a88f3
   }
 
   startTimer(){

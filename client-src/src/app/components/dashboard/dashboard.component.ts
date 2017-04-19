@@ -18,32 +18,34 @@ export class DashboardComponent implements OnInit {
   private id:any;
   private newDmg:number;
   private newHp:number;
+  private user:any;
 
   constructor(private authService: AuthService, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-    var user = JSON.parse(this.authService.getUserLocaldata());
-    this.authService.getCharacter(user).subscribe(data =>{
-      if(data.success){
-        this.hp = data.char.combat[0].health;
-        this.image = data.char.charImage;
-        this.name = data.char.charName;
-        this.level = data.char.playerLvl;
-        this.xp = data.char.xp;
-        this.id = data.char._id;
-      }else{
-        console.log(data);
-      }
-    });
-
-    this.authService.getLevels().subscribe(data =>{
-      if(data.success){
-        console.log(data.level[this.level]);
-        this.totalXp = data.level[this.level].xp;
-        this.newDmg = data.level[this.level].damage;
-        this.newHp = data.level[this.level].health;
-        this.calculateLevel();
-      }
+    this.authService.getProfile().subscribe(profile => {
+      this.user = profile.user;
+      this.authService.updateUserLocal(this.user);
+      this.authService.getCharacter(this.user).subscribe(data =>{
+        if(data.success){
+          this.hp = data.char.combat[0].health;
+          this.image = data.char.charImage;
+          this.name = data.char.charName;
+          this.level = data.char.playerLvl;
+          this.xp = data.char.xp;
+          this.id = data.char._id;
+          this.authService.getLevels().subscribe(data =>{
+            if(data.success){
+              this.totalXp = data.level[this.level].xp;
+              this.newDmg = data.level[this.level].damage;
+              this.newHp = data.level[this.level].health;
+              this.calculateLevel();
+            }
+          });
+        }else{
+          console.log(data);
+        }
+      });
     });
   }
 

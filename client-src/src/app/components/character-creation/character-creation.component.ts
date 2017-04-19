@@ -90,7 +90,7 @@ export class CharacterCreationComponent implements OnInit {
         }
       });
       this.flashMessage.show('You have registered a character', {cssClass: 'alert-success', timeout: 3000});
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/dashboard']);
     }else{
       this.flashMessage.show('REGISTER FAILED', {cssClass: 'alert-danger', timeout: 3000});
       this.router.navigate(['/create-char']);

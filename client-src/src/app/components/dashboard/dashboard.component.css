@@ -1,38 +1,46 @@
 .top-buffer {
   margin-top:20px;
 }
-#friends{
-  width: 35%;
 
-}
 @media(max-width:767px){
+  #friends{
+    display: block;
+    margin: auto;
+    width: 45%;
+    text-align: center;
+    padding-top: 10%;
+  }
   #arenaTitle{
-    margin-left: 20%;
+    text-align: center;
+    padding-bottom: 10px;
   }
 
   #arenaImg{
-    width: 35%;
+    width: 45%;
     display: block;
     margin: auto;
+    padding: 10px;
   }
 
   #studyTitle{
-    margin-left: 20%;
+    text-align: center;
+    padding-bottom: 10px;
   }
 
   #studyhallImg{
     display: block;
     margin: auto;
-    width: 30%;
+    width: 35%;
   }
 
   #profileImg{
     display: block;
     margin: auto;
-    width: 20%;
+    width: 35%;
   }
 
   #char{
+    padding-top: 10px;
     text-align: center;
   }
 
@@ -44,32 +52,32 @@
     margin: auto;
     padding-bottom: 5%;
   }
-  #friends{
-    float: left;
-    margin: auto;
-  }
 }
 
-@media(min-width: 768px){
+@media(min-width:767px){
   #arenaImg{
-    width: 40%;
+    width: 25%;
+    padding: 10px;
+  }
+  #arenaTitle{
+    padding-bottom: 10px;
   }
 
   #studyTitle{
     float:right;
-    display: block;
     padding-right: 5%;
   }
 
   #studyhallImg{
     float: right;
-    width: 35%;
+    width: 25%;
+    padding-right: 5%;
   }
 
   #profileImg{
     display: block;
     margin: auto;
-    width: 15%;
+    width: 8%;
   }
 
   #char{
@@ -85,5 +93,4 @@
     margin: auto;
     padding-bottom: 5%;
   }
-
 }
