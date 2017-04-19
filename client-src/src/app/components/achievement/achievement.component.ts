@@ -35,6 +35,9 @@ export class AchievementComponent implements OnInit {
     });
   }
 
+  tweet(){
+    this.flashMessage.show('You tweeted your achievement', {cssClass: 'alert-success', timeout: 3000});
+  }
   printAchievements(){
     var char = JSON.parse(this.authService.getCharacterLocalStorage());
     for(var i = 0; i<char.achievements.length; i++){
@@ -71,7 +74,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -99,7 +102,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -125,7 +128,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -152,7 +155,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -178,7 +181,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -204,7 +207,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+                
               }else{
                 console.log(data.msg);
               }
