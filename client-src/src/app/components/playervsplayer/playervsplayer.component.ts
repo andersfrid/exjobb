@@ -67,7 +67,7 @@ export class PlayervsplayerComponent implements OnInit {
 
       }
     });
-    //this.startTimer();
+    this.startTimer();
   }
 
   startTimer(){
@@ -140,7 +140,7 @@ export class PlayervsplayerComponent implements OnInit {
       }
 
       this.checkGameOver();
-      //this.startTimer();
+      this.startTimer();
   }
 
   checkGameOver(){

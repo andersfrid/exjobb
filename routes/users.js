@@ -19,20 +19,20 @@ router.post('/register', (req, res, next) => {
     password: req.body.password,
     assignments:[
       { course:"Datavetenskap", assignment:"Lab 1", wAssessed:false, passed:false, handedIn:true, date:"-", msg:"Need to fix if statement" },
-      {course:"Datavetenskap", assignment:"Lab 2", wAssessed:false, passed:true, handedIn:true, msg:"Well done"},
-      {course:"OOP", assignment:"Lab 1", wAssessed:false, passed:true, handedIn:true, msg:"Well done"},
-      {course:"OOP", assignment:"Lab 2", wAssessed:false, passed:true, handedIn:true, msg:"Well done"},
-      {course:"OOP", assignment:"Lab 3", wAssessed:false, passed:true, handedIn:true, msg:"Well done"},
-      {course:"OOP", assignment:"Lab 4",wAssessed:false, passed:false, handedIn:true, date:"-", msg:"It crashed when i try to run it, fix!"},
-      {course:"Datavetenskap", assignment:'Project report', wAssessed:false, passed:false, handedIn:false, date:'1/4'},
-      {course:"Datavetenskap", assignment:'Lab 3', wAssessed:false, passed:false, handedIn:false, date:'8/4'},
-      {course:"Datavetenskap", assignment:'Lab 4', wAssessed:false, passed:false, handedIn:false, date:'16/4'},
-      {course:"Datavetenskap", assignment:'Text writing', wAssessed:false, passed:false, handedIn:false, date:'24/4'},
-      {course:"OOP", assignment:'Project report', wAssessed:false, passed:false, handedIn:false, date:'28/4'},
-      {course:"OOP", assignment:'Lab 5', passed:false, wAssessed:false, handedIn:false, date:'3/4'},
-      {course:"OOP", assignment:'Lab 6', passed:false, wAssessed:false, handedIn:false, date:'8/4'},
-      {course:"OOP", assignment:'Lab 7', passed:false, wAssessed:false, handedIn:false, date:'14/4'},
-      {course:"OOP", assignment:'Group assignment', wAssessed:false, passed:false, handedIn:false, date:'20/4'}
+      {course:"Datavetenskap", assignment:"Lab 2", wAssessed:true, passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 1", wAssessed:true, passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 2", wAssessed:true, passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 3", wAssessed:true, passed:true, handedIn:true, msg:"Well done"},
+      {course:"OOP", assignment:"Lab 4", wAssessed:false, passed:false, handedIn:true, date:"-", msg:"It crashed when I try to run it, fix!"},
+      {course:"Datavetenskap", assignment:"Project report", wAssessed:false, passed:false, handedIn:false, date:"1/4"},
+      {course:"Datavetenskap", assignment:"Lab 3", wAssessed:false, passed:false, handedIn:false, date:"8/4"},
+      {course:"Datavetenskap", assignment:"Lab 4", wAssessed:false, passed:false, handedIn:false, date:"16/4"},
+      {course:"Datavetenskap", assignment:"Text writing", wAssessed:false, passed:false, handedIn:false, date:"24/4"},
+      {course:"OOP", assignment:"Project report", wAssessed:false, passed:false, handedIn:false, date:"28/4"},
+      {course:"OOP", assignment:"Lab 5", wAssessed:false, passed:false, handedIn:false, date:"3/4"},
+      {course:"OOP", assignment:"Lab 6", wAssessed:false, passed:false, handedIn:false, date:"8/4"},
+      {course:"OOP", assignment:"Lab 7", wAssessed:false, passed:false,  handedIn:false, date:"14/4"},
+      {course:"OOP", assignment:"Group assignment", wAssessed:false, passed:false, handedIn:false, date:"20/4"}
     ]
   });
 
@@ -158,10 +158,8 @@ router.post('/setchar', (req, res, next) =>{
 router.post('/updateAssignment', (req,res,next)=>{
   User.updateAssignment(req.body, (err, data)=>{
     if(err){
-      console.log(err);
       res.json({success:false, msg:'Failed update user', err:err});
     }else{
-      console.log(data);
       res.json({success:true, data:data});
     }
   });

@@ -74,7 +74,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -102,7 +102,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -128,7 +128,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -155,7 +155,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -181,7 +181,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+
               }else{
                 console.log(data.msg);
               }
@@ -207,7 +207,7 @@ export class AchievementComponent implements OnInit {
             }
             this.authService.updateChar(upXP).subscribe(data =>{
               if(data.success){
-                console.log('YAAAY XP');
+                
               }else{
                 console.log(data.msg);
               }

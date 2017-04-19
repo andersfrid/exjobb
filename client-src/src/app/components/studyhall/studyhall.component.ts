@@ -30,12 +30,11 @@ export class StudyhallComponent implements OnInit {
     this.authService.getProfile().subscribe(profile => {
       if(profile.success){
         this.user = profile.user;
-        console.log(this.user);
         this.authService.updateUserLocal(this.user);
         for(var i = 0; i < this.user.assignments.length; i ++){
           if(this.user.assignments[i].handedIn){
             this.turnedIn++;
-            if(this.user.assignments[i].wAssessed){
+            if(this.user.assignments[i].wAssessed && !this.user.assignments[i].passed){
               this.handedIn.push(this.user.assignments[i]);
             }else if(this.user.assignments[i].passed){
               this.passed++;
@@ -61,7 +60,6 @@ export class StudyhallComponent implements OnInit {
       });
     this.authService.getLevels().subscribe(data =>{
       if(data.success){
-        console.log(data.level[this.level]);
         this.totalXp = data.level[this.level].xp;
       }
     });
@@ -81,16 +79,13 @@ export class StudyhallComponent implements OnInit {
     this.notDone[value].handedIn = true;
     this.notDone[value].wAssessed = true;
     this.handedIn.push(this.notDone[value]);
-    this.notDone.splice(value, 1);
-  //  console.log(this.handedIn[value]._id);
-  //  console.log(this.handedIn[value]);
-//    console.log(value);
+
     var updateUser= {
       _id:this.user._id,
-      assignmentId:this.handedIn[value]._id
+      assignmentId:this.notDone[value]._id
     };
+    this.notDone.splice(value, 1);
 
-    console.log(updateUser);
     this.authService.updateUser(updateUser).subscribe(data =>{
       if(data.success){
         console.log(data);
@@ -105,7 +100,17 @@ export class StudyhallComponent implements OnInit {
     this.correct[value].handedIn = true;
     this.correct[value].wAssessed = true;
     this.handedIn.push(this.correct[value]);
+
+    var updateUser= {
+      _id:this.user._id,
+      assignmentId:this.correct[value]._id
+    };
     this.correct.splice(value, 1);
-    console.log(this.correct);
+
+    this.authService.updateUser(updateUser).subscribe(data =>{
+      if(data.success){
+        console.log(data);
+      }
+    });
   }
 }
